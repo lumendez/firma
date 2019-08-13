@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  folio: MyString
+  numero_relacion: MyString
+  numero_oficio: MyString
+  numero_registro: MyString
+  codigo_prestatario: MyString
+  clave_programa: MyString
+  fecha: MyString
+  nombre: MyString
+  boleta: MyString
+  unidad_academica: MyString
+  programa_academico: MyString
+  periodo: MyString
+  prestatario: MyString
+  constancia_emitida: false
+
+two:
+  folio: MyString
+  numero_relacion: MyString
+  numero_oficio: MyString
+  numero_registro: MyString
+  codigo_prestatario: MyString
+  clave_programa: MyString
+  fecha: MyString
+  nombre: MyString
+  boleta: MyString
+  unidad_academica: MyString
+  programa_academico: MyString
+  periodo: MyString
+  prestatario: MyString
+  constancia_emitida: false

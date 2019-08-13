@@ -1,0 +1,53 @@
+<h1 class="sub">Constancias capturadas</h1>
+<%= form_tag firmar_constancia_documentos_path, method: :get do %>
+  <table>
+    <thead>
+      <tr>
+        <th>Seleccionar</th>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Boleta</th>
+        <th>Unidad academica</th>
+        <th>Programa academico</th>
+        <th>Periodo</th>
+        <th>Prestatario</th>
+        <th>Constancia emitida</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @constancia_documentos.each do |constancia_documento| %>
+        <tr>
+          <td><%= check_box_tag "constancia_documento_ids[]", constancia_documento.id %></td>
+          <td><%= constancia_documento.fecha %></td>
+          <td><%= constancia_documento.nombre %></td>
+          <td><%= constancia_documento.boleta %></td>
+          <td><%= constancia_documento.unidad_academica %></td>
+          <td><%= constancia_documento.programa_academico %></td>
+          <td><%= constancia_documento.periodo %></td>
+          <td><%= constancia_documento.prestatario %></td>
+          <td><%= constancia_documento.constancia_emitida %></td>
+          <td><%= link_to 'Show', constancia_documento %></td>
+          <td><%= link_to 'Edit', edit_constancia_documento_path(constancia_documento) %></td>
+          <td><%= link_to 'Destroy', constancia_documento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <input type="checkbox" id="selectAll" value="selectAll"><strong> Seleccionar / Deseleccionar todos</strong><br><br>
+<%= submit_tag "Editar seleccionados", class: 'btn btn-primary' %>
+<% end %>
+<script>
+$('#selectAll').click(function() {
+   if (this.checked) {
+       $(':checkbox').each(function() {
+           this.checked = true;
+       });
+   } else {
+      $(':checkbox').each(function() {
+           this.checked = false;
+       });
+   }
+});
+</script>

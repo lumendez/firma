@@ -1,0 +1,2 @@
+class ConstanciaDocumento < ApplicationRecord
+end
