@@ -70,5 +70,15 @@
   <%= @constancia_documento.constancia_emitida %>
 </p>
 
+<p>
+  <strong>Firma electrónica:</strong>
+  <%= @constancia_documento.firma_direccion %>
+</p>
+
+<p> <strong>Firma valida:</<strong>
+  <%= @info %>
+
+</p>
+
 <%= link_to 'Edit', edit_constancia_documento_path(@constancia_documento) %> |
 <%= link_to 'Back', constancia_documentos_path %>
