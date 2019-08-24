@@ -63,8 +63,8 @@ class ConstanciaDocumentosController < ApplicationController
 
   def firmar
     public_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('public.pem')))
-    @constancia_documentos = ConstanciaDocumento.find(params[:constancia_documento_ids])
-    @constancia_documentos.each do |constancia_documento|
+    constancia_documentos = ConstanciaDocumento.find(params[:constancia_documento_ids])
+    constancia_documentos.each do |constancia_documento|
       folio = constancia_documento.folio
       numero_relacion = constancia_documento.numero_relacion
       numero_oficio = constancia_documento.numero_oficio
@@ -78,14 +78,34 @@ class ConstanciaDocumentosController < ApplicationController
       programa_academico = constancia_documento.programa_academico
       periodo = constancia_documento.periodo
       prestatario = constancia_documento.prestatario
-      cadena = folio + numero_relacion + numero_oficio + numero_registro +
-      codigo_prestatario + clave_programa + fecha + nombre + boleta +
-      unidad_academica + programa_academico
+      cadena = folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
+      numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
+      fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico
       firma = public_key.public_encrypt(cadena)
       firma_electronica = Base64.encode64(firma)
       constancia_documento.update(firma_direccion: firma_electronica)
+=begin
+  #Para el descifrado
+  private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('private.pem')))
+  reg = @constancia_documento
+  info = reg.firma_direccion.gsub("\n","")
+  infobin = Base64.decode64(info)
+  private_key.private_decrypt(infobin)
+=end
     end
     redirect_to constancia_documentos_path
+  end
+
+  def imprimir
+    @constancia_documento = ConstanciaDocumento.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name",   # Excluding ".pdf" extension.
+        template: "constancia_documentos/imprimir.html.erb",
+        layout: "imprimir.html.erb"
+      end
+    end
   end
 
   private

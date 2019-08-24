@@ -75,9 +75,17 @@
   <%= @constancia_documento.firma_direccion %>
 </p>
 
-<p> <strong>Firma valida:</<strong>
-  <%= @info %>
+<p> <strong>Firma valida:</strong>
+  <%
+    private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('private.pem')))
+     reg = @constancia_documento
+     info = reg.firma_direccion.gsub("\n","")
+     infobin = Base64.decode64(info) %>
+  <%=   private_key.private_decrypt(infobin) %>
 
+</p>
+<p>
+  <%= link_to "Descargar constancia", imprimir_constancia_documentos_path(@constancia_documento.id, format: :pdf) %>
 </p>
 
 <%= link_to 'Edit', edit_constancia_documento_path(@constancia_documento) %> |
