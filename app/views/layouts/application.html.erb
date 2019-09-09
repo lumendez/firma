@@ -90,13 +90,14 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" title="Menú Conócenos" href="#" id="Dropdown11" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Conócenos
+                Constancias
               </a>
               <ul class="dropdown-menu" aria-labelledby="Dropdown11">
                 <li>
-                  <a class="dropdown-item" href="conocenos/mision-historia.html" title="Misión e Historia" >
-                    Misión e Historia
-                  </a>
+                   <%= link_to "Capturar constancia", new_constancia_documento_path, class:'dropdown-item' %>
+                </li>
+                <li>
+                   <%= link_to "Constancias capturadas", constancia_documentos_path, class:'dropdown-item' %>
                 </li>
               </ul>
             </li>
@@ -106,9 +107,7 @@
     </nav>
     <div class="bg--blanco">
       <div class="container">
-        <div class="row">
-          <%= yield %>
-        </div>
+        <%= yield %>
       </div>
     </div>
     <!-- Pie de página -->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_001732) do
+ActiveRecord::Schema.define(version: 2019_09_09_155842) do
 
   create_table "constancia_documentos", force: :cascade do |t|
     t.string "folio"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_08_08_001732) do
     t.datetime "updated_at", null: false
     t.string "firma_direccion"
     t.string "firma_departamento"
+    t.string "apellido_paterno"
+    t.string "apellido_materno"
   end
 
 end

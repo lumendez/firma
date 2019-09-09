@@ -41,6 +41,16 @@
 </p>
 
 <p>
+  <strong>Apellido paterno:</strong>
+  <%= @constancia_documento.apellido_paterno %>
+</p>
+
+<p>
+  <strong>Apellido materno:</strong>
+  <%= @constancia_documento.apellido_materno %>
+</p>
+
+<p>
   <strong>Boleta:</strong>
   <%= @constancia_documento.boleta %>
 </p>
@@ -78,15 +88,17 @@
 <p> <strong>Firma valida:</strong>
   <%
     private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('private.pem')))
-     reg = @constancia_documento
-     info = reg.firma_direccion.gsub("\n","")
-     infobin = Base64.decode64(info) %>
-  <%=   private_key.private_decrypt(infobin) %>
+    reg = @constancia_documento
+    info = reg.firma_direccion.gsub("\n","")
+    infobin = Base64.decode64(info)
+  %>
+  <%= private_key.private_decrypt(infobin) %>
 
 </p>
 <p>
-  <%= link_to "Descargar constancia", imprimir_constancia_documentos_path(@constancia_documento.id, format: :pdf) %>
+  <%= link_to "Descargar constancia", imprimir_constancia_documentos_path(@constancia_documento.id, format: :pdf),
+  target:"_blank" %>
 </p>
 
-<%= link_to 'Edit', edit_constancia_documento_path(@constancia_documento) %> |
-<%= link_to 'Back', constancia_documentos_path %>
+<%= link_to 'Editar', edit_constancia_documento_path(@constancia_documento) %> |
+<%= link_to 'Regresar', constancia_documentos_path %>

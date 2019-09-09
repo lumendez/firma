@@ -15,7 +15,7 @@
 
  html {
      font-family: Roboto, "Open Sans", sans-serif;
-     font-size: 16px
+     font-size: 12px // Modificado 09 09 19 antes 16px
  }
 
  body {
@@ -2716,4 +2716,8 @@
      font-weight: 700;
      background-color: #682444!important;
      color: #fff!important
+ }
+
+ .tabla-constancias {
+   font-size: 12px !important;
  }
