@@ -1,7 +1,7 @@
 <%= form_with(model: constancia_documento, local: true) do |form| %>
   <% if constancia_documento.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(constancia_documento.errors.count, "error") %> prohibited this constancia_documento from being saved:</h2>
+      <h2>Los siguientes errores no permitieron que el registro se guardara:</h2>
 
       <ul>
       <% constancia_documento.errors.full_messages.each do |message| %>

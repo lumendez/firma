@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  scope "/admin" do
+    resources :users
+  end
+  resources :roles
+  resources :users
   resources :constancia_documentos do
     collection do
       get 'firmar'
