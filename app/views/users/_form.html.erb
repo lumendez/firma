@@ -23,6 +23,17 @@
 
     <%= form.label :role_id %>
     <%= collection_select(:user, :role_id, Role.all, :id, :nombre, {prompt: 'Seleccione'}, class: 'form-control col-md-2') %>
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autocomplete: "email", class:"form-control col-md-2" %>
+
+    <%= form.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> caracteres minimos)</em>
+    <% end %><br />
+    <%= form.password_field :password, autocomplete: "new-password", class:"form-control col-md-2" %>
+
+    <%= form.label :password_confirmation %><br />
+    <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control col-md-2" %>
   </div>
 
   <div class="actions">
