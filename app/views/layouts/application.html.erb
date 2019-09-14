@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ConstanciasServicioSocial</title>
+    <title>Sistema de Constancias Servicio Social</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -83,21 +83,35 @@
         </button>
         <div class="collapse navbar-collapse d-xl-flex justify-content-md-around" id="navbarSupportedContent">
           <ul class="navbar-nav">
+            <% if user_signed_in? %>
             <li class="nav-item">
               <a class="nav-link" href="https://ipn.mx/" title="Inicio" >
                 Inicio
               </a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" title="Menú constancias" href="#" id="Dropdown11" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" title="Menú constancias" href="#" id="Dropdown10" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Constancias
               </a>
-              <ul class="dropdown-menu" aria-labelledby="Dropdown11">
+              <ul class="dropdown-menu" aria-labelledby="Dropdown10">
                 <li>
                    <%= link_to "Capturar constancia", new_constancia_documento_path, class:'dropdown-item' %>
                 </li>
                 <li>
                    <%= link_to "Constancias capturadas", constancia_documentos_path, class:'dropdown-item' %>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" title="Menú usuarios" href="#" id="Dropdown11" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Usuarios
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="Dropdown11">
+                <li>
+                   <%= link_to "Capturar nuevo usuario", new_user_path, class:'dropdown-item' %>
+                </li>
+                <li>
+                   <%= link_to "Lista de usuarios", users_path, class:'dropdown-item' %>
                 </li>
               </ul>
             </li>
@@ -114,10 +128,27 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" title="Menú configuración" href="#" id="Dropdown13" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <strong>Hola!</strong> <%= current_user.nombre %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="Dropdown13">
+                <li>
+                   <%= link_to "Salir", destroy_user_session_path, class:'dropdown-item', method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
           </ul>
         </div>
       </div>
     </nav>
+    <!--Nombre Escuela-->
+    <div class="nombreEscuela-contenedor nombreEscuela-contenedor--negro">
+        <div class="container u-noPaddingContainer text-center">
+            <p class="nombreUr-titulo">Sistema de Emisión de Constancias de Servicio Social</p>
+        </div>
+    </div>
     <div class="bg--blanco">
       <div class="container">
         <div id="flash">

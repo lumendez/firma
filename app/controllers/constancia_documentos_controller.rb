@@ -1,4 +1,5 @@
 class ConstanciaDocumentosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_constancia_documento, only: [:show, :edit, :update, :destroy]
 
   # GET /constancia_documentos
@@ -28,7 +29,7 @@ class ConstanciaDocumentosController < ApplicationController
 
     respond_to do |format|
       if @constancia_documento.save
-        format.html { redirect_to @constancia_documento, notice: 'Constancia documento was successfully created.' }
+        format.html { redirect_to @constancia_documento, notice: 'La constancia fue creada correctamente.' }
         format.json { render :show, status: :created, location: @constancia_documento }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ConstanciaDocumentosController < ApplicationController
   def update
     respond_to do |format|
       if @constancia_documento.update(constancia_documento_params)
-        format.html { redirect_to @constancia_documento, notice: 'Constancia documento was successfully updated.' }
+        format.html { redirect_to @constancia_documento, notice: 'La constancia fue actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @constancia_documento }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class ConstanciaDocumentosController < ApplicationController
   def destroy
     @constancia_documento.destroy
     respond_to do |format|
-      format.html { redirect_to constancia_documentos_url, notice: 'Constancia documento was successfully destroyed.' }
+      format.html { redirect_to constancia_documentos_url, notice: 'La constancia fue eliminada correctamente.' }
       format.json { head :no_content }
     end
   end
