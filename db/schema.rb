@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_192104) do
+ActiveRecord::Schema.define(version: 2019_09_16_221749) do
 
   create_table "constancia_documentos", force: :cascade do |t|
     t.string "folio"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_192104) do
     t.string "firma_departamento"
     t.string "apellido_paterno"
     t.string "apellido_materno"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_constancia_documentos_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|

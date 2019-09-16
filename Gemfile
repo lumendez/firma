@@ -30,7 +30,7 @@ gem 'encryption'
 
 gem 'devise', '~> 4.7.1'
 
-gem 'cancan'
+gem "pundit"
 
 gem 'rails-i18n'
 

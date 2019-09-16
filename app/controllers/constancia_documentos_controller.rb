@@ -15,7 +15,7 @@ class ConstanciaDocumentosController < ApplicationController
 
   # GET /constancia_documentos/new
   def new
-    @constancia_documento = ConstanciaDocumento.new
+    @constancia_documento = current_user.constancia_documentos.build
   end
 
   # GET /constancia_documentos/1/edit
@@ -25,7 +25,7 @@ class ConstanciaDocumentosController < ApplicationController
   # POST /constancia_documentos
   # POST /constancia_documentos.json
   def create
-    @constancia_documento = ConstanciaDocumento.new(constancia_documento_params)
+    @constancia_documento = current_user.constancia_documentos.build(constancia_documento_params)
 
     respond_to do |format|
       if @constancia_documento.save
@@ -121,7 +121,11 @@ class ConstanciaDocumentosController < ApplicationController
         :numero_oficio, :numero_registro, :codigo_prestatario, :clave_programa,
         :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
         :periodo, :prestatario, :constancia_emitida, :apellido_paterno,
-        :apellido_materno)
+        :apellido_materno, :user_id)
+    end
+
+    def constancia_documento
+      @constancia_documento = ConstanciaDocumento.new(constancia_documento_params)
     end
 
     def firmar_constancia_params

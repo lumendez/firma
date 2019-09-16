@@ -36,6 +36,7 @@
   <input type="checkbox" id="selectAll" value="selectAll"><strong> Seleccionar / Deseleccionar todos</strong><br><br>
 <%= submit_tag "Firmar seleccionados", class: 'btn btn-primary' %>
 <% end %>
+<%= link_to 'Crear nueva constancia', new_constancia_documento_path %>
 <script>
 $('#selectAll').click(function() {
    if (this.checked) {
