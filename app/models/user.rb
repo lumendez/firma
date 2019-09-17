@@ -14,19 +14,19 @@ class User < ApplicationRecord
   end
 
   def administrador?
-    self.role.name == "Admin"
+    self.role.nombre == "Administrador"
   end
 
   def direccion?
-    self.role.name == "Dirección"
+    self.role.nombre == "Dirección"
   end
 
   def departamento?
-    self.role.name == "Departamento"
+    self.role.nombre == "Departamento"
   end
 
   def captura?
-    self.role.name == "Captura"
+    self.role.nombre == "Captura"
   end
 
 end

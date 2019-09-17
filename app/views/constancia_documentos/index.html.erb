@@ -3,7 +3,9 @@
   <table class="table tabla-constancias">
     <thead>
       <tr>
-        <th>Seleccionar</th>
+        <% if policy(@constancia_documentos).firmar? %>
+          <th>Seleccionar</th>
+        <% end %>
         <th>Fecha</th>
         <th>Nombre</th>
         <th>Boleta</th>
@@ -11,14 +13,20 @@
         <th>Programa academico</th>
         <th>Periodo</th>
         <th>Prestatario</th>
-        <th colspan="3"></th>
+        <% if policy(@constancia_documentos).show? %>
+          <th>Captura</th>
+          <th>Fecha</th>
+          <th colspan="3">Opciones</th>
+        <% end %>
       </tr>
     </thead>
 
     <tbody>
       <% @constancia_documentos.each do |constancia_documento| %>
         <tr>
-          <td><%= check_box_tag "constancia_documento_ids[]", constancia_documento.id %></td>
+          <% if policy(@constancia_documentos).firmar? %>
+            <td><%= check_box_tag "constancia_documento_ids[]", constancia_documento.id %></td>
+          <% end %>
           <td><%= constancia_documento.fecha %></td>
           <td><%= constancia_documento.nombre %></td>
           <td><%= constancia_documento.boleta %></td>
@@ -26,27 +34,35 @@
           <td><%= constancia_documento.programa_academico %></td>
           <td><%= constancia_documento.periodo %></td>
           <td><%= constancia_documento.prestatario %></td>
-          <td><%= link_to 'Mostrar', constancia_documento %></td>
-          <td><%= link_to 'Editar', edit_constancia_documento_path(constancia_documento) %></td>
-          <td><%= link_to 'Eliminar', constancia_documento, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+          <% if policy(@constancia_documentos).show? %>
+            <td><%= constancia_documento.user.nombre %></td>
+            <td><%= constancia_documento.user.created_at %></td>
+            <td><%= link_to 'Mostrar', constancia_documento %></td>
+            <td><%= link_to 'Editar', edit_constancia_documento_path(constancia_documento) %></td>
+            <td><%= link_to 'Eliminar', constancia_documento, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <input type="checkbox" id="selectAll" value="selectAll"><strong> Seleccionar / Deseleccionar todos</strong><br><br>
-<%= submit_tag "Firmar seleccionados", class: 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Crear nueva constancia', new_constancia_documento_path %>
-<script>
-$('#selectAll').click(function() {
-   if (this.checked) {
-       $(':checkbox').each(function() {
-           this.checked = true;
-       });
-   } else {
-      $(':checkbox').each(function() {
-           this.checked = false;
-       });
-   }
-});
-</script>
+  <% if policy(@constancia_documentos).firmar? %>
+    <input type="checkbox" id="selectAll" value="selectAll"><strong> Seleccionar / Deseleccionar todos</strong><br><br>
+    <%= submit_tag "Firmar seleccionados", class: 'btn btn-primary' %>
+  <% end %>
+  <% end %>
+  <% if policy(@constancia_documentos).new? %>
+    <%= link_to 'Crear nueva constancia', new_constancia_documento_path %>
+  <% end %>
+  <script>
+  $('#selectAll').click(function() {
+     if (this.checked) {
+         $(':checkbox').each(function() {
+             this.checked = true;
+         });
+     } else {
+        $(':checkbox').each(function() {
+             this.checked = false;
+         });
+     }
+  });
+  </script>

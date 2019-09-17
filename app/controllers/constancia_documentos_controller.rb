@@ -6,6 +6,7 @@ class ConstanciaDocumentosController < ApplicationController
   # GET /constancia_documentos.json
   def index
     @constancia_documentos = ConstanciaDocumento.all
+    authorize @constancia_documentos
   end
 
   # GET /constancia_documentos/1
@@ -16,6 +17,7 @@ class ConstanciaDocumentosController < ApplicationController
   # GET /constancia_documentos/new
   def new
     @constancia_documento = current_user.constancia_documentos.build
+    authorize @constancia_documento
   end
 
   # GET /constancia_documentos/1/edit
@@ -29,8 +31,12 @@ class ConstanciaDocumentosController < ApplicationController
 
     respond_to do |format|
       if @constancia_documento.save
-        format.html { redirect_to @constancia_documento, notice: 'La constancia fue creada correctamente.' }
-        format.json { render :show, status: :created, location: @constancia_documento }
+        if current_user.role.nombre == "Captura"
+          format.html { redirect_to constancia_documentos_path, notice: 'La constancia fue creada correctamente.' }
+        else
+          format.html { redirect_to @constancia_documento, notice: 'La constancia fue creada correctamente.' }
+          format.json { render :show, status: :created, location: @constancia_documento }
+        end
       else
         format.html { render :new }
         format.json { render json: @constancia_documento.errors, status: :unprocessable_entity }
@@ -94,7 +100,7 @@ class ConstanciaDocumentosController < ApplicationController
   private_key.private_decrypt(infobin)
 =end
     end
-    redirect_to constancia_documentos_path
+    redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
   end
 
   def imprimir
