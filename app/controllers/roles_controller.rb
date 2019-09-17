@@ -6,6 +6,7 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all
+    authorize @roles
   end
 
   # GET /roles/1
@@ -16,6 +17,7 @@ class RolesController < ApplicationController
   # GET /roles/new
   def new
     @role = Role.new
+    authorize @role
   end
 
   # GET /roles/1/edit
