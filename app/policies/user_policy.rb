@@ -12,7 +12,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    user.administrador? or user.departamento?
+    user.administrador?
   end
 
   def update?
