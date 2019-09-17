@@ -1,0 +1,45 @@
+            <li class="nav-item">
+              <a class="nav-link" href="https://ipn.mx/" title="Inicio" >
+                Inicio
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" title="Menú constancias" href="#" id="Dropdown10" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Constancias
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="Dropdown10">
+                <li>
+                   <%= link_to "Constancias capturadas", constancia_documentos_path, class:'dropdown-item' %>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" title="Menú usuarios" href="#" id="Dropdown11" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Usuarios
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="Dropdown11">
+                <li>
+                   <%= link_to "Lista de usuarios", users_path, class:'dropdown-item' %>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" title="Menú configuración" href="#" id="Dropdown12" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Configuración
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="Dropdown12">
+                <li>
+                   <%= link_to "Lista de roles", roles_path, class:'dropdown-item' %>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" title="Menú usuario" href="#" id="Dropdown13" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <strong>Hola!</strong> <%= current_user.nombre %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="Dropdown13">
+                <li>
+                   <%= link_to "Salir", destroy_user_session_path, class:'dropdown-item', method: :delete %>
+                </li>
+              </ul>
+            </li>
