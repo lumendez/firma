@@ -17,7 +17,6 @@ class ConstanciaDocumentosController < ApplicationController
   # GET /constancia_documentos/new
   def new
     @constancia_documento = current_user.constancia_documentos.build
-    authorize @constancia_documento
   end
 
   # GET /constancia_documentos/1/edit
@@ -104,7 +103,7 @@ class ConstanciaDocumentosController < ApplicationController
   end
 
   def imprimir
-    @constancia_documento = ConstanciaDocumento.find(params[:id])
+    @constancia_documento = ConstanciaDocumento.find_by uuid: params[:uuid]
     respond_to do |format|
       format.html
       format.pdf do
@@ -118,7 +117,8 @@ class ConstanciaDocumentosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_constancia_documento
-      @constancia_documento = ConstanciaDocumento.find(params[:id])
+      #@constancia_documento = ConstanciaDocumento.find(params[:id])
+      @constancia_documento = ConstanciaDocumento.find_by uuid: params[:uuid]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
