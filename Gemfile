@@ -26,34 +26,40 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Para le cifrado de datos / firma electrónica
 gem 'encryption'
-
+# Para las cuentas de usuario
 gem 'devise', '~> 4.7.1'
-
+# Para los permisos del sistema
 gem "pundit"
-
+# Para la localización en español
 gem 'rails-i18n'
-
+# Para la localización de Devise
 gem 'devise-i18n'
-
+# Para la paginación del sistema
 gem 'kaminari'
-
+# Para los estilos de la paginación con kaminari
 gem 'bootstrap-kaminari-views'
-
+# Para el filtrado de los registros
 gem 'filterrific'
-
+# Para realizar consultas más legibles en la consola
 gem 'awesome_rails_console'
-
+# Para generar pdf a partir de html
 gem 'wicked_pdf'
-
+# Biblioteca para crear pdf
 gem 'wkhtmltopdf-binary'
-
+# Para utilizar jQuery en rails
 gem 'jquery-rails'
-
+# Última versión de bootstrap para el diseño de la página
 gem 'bootstrap', '~> 4.3.1'
-
+# Para geneara los id únicos para las constancias
 gem 'uuidable'
-
+# Para la autenticación de dos factores
+gem 'active_model_otp'
+# Para la generación de códigos QR
+gem 'rqrcode'
+# SVG inline
+gem 'rqrcode_png'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

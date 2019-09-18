@@ -6,12 +6,12 @@ class User < ApplicationRecord
 
   has_many :constancia_documentos, dependent: :destroy
   belongs_to :role
-  before_save :assign_role
+  has_one_time_password
+  enum otp_module: {disabled: 0, enabled: 1}, _prefix: true
+  attr_accessor :otp_code_token
 
-  # Asignación de rol por default
-  def assign_role
-    self.role = Role.find_by nombre: "Administrador" if self.role.nil?
-  end
+
+
 
   def administrador?
     self.role.nombre == "Administrador"

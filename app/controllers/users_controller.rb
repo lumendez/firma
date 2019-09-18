@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'rqrcode'
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 

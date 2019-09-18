@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions'}
   scope "/admin" do
     resources :users
   end
   resources :roles
-  resources :users
+  resources :users do
+    member do
+      post :enable_multi_factor_authentication, to: 'users/multi_factor_authentication#verify_enable'
+      post :disable_multi_factor_authentication, to: 'users/multi_factor_authentication#verify_disabled'
+    end
+  end
   resources :constancia_documentos, param: :uuid
   resources :constancia_documentos do
     collection do
