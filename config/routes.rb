@@ -11,14 +11,13 @@ Rails.application.routes.draw do
       post :disable_multi_factor_authentication, to: 'users/multi_factor_authentication#verify_disabled'
     end
   end
-  resources :constancia_documentos, param: :uuid
-  resources :constancia_documentos do
+  # Antes de param para que no se envie en parameters
+  resources :constancia_documentos, param: :uuid do
     collection do
       get 'firmar'
       get 'imprimir/:uuid', to: 'constancia_documentos#imprimir',  as: 'imprimir'
     end
   end
-
   devise_scope :user do
     root to: "devise/sessions#new"
   end

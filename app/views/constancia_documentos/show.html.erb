@@ -72,11 +72,16 @@
   <strong>Prestatario:</strong>
   <%= @constancia_documento.prestatario %>
 </p>
-
+<% if @constancia_documento.constancia_emitida? %>
+<p><strong>Constancia emitida:</strong>
+Válida
+</p>
+<% else %>
 <p>
   <strong>Constancia emitida:</strong>
-  <%= @constancia_documento.constancia_emitida %>
+Constancia sin validez
 </p>
+<% end %>
 
 <% if @constancia_documento.firma_direccion.nil? %>
 <p>
