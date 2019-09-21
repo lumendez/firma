@@ -29,4 +29,8 @@ class User < ApplicationRecord
     self.role.nombre == "Captura"
   end
 
+  def nombre_completo
+    "#{nombre} #{apellido_paterno} #{apellido_materno}"
+  end
+
 end

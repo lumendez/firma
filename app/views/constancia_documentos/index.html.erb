@@ -35,8 +35,8 @@
           <td><%= constancia_documento.periodo %></td>
           <td><%= constancia_documento.prestatario %></td>
           <% if policy(@constancia_documentos).show? %>
-            <td><%= constancia_documento.user.nombre %> <%= constancia_documento.user.apellido_paterno %> <%= constancia_documento.user.apellido_materno %></td>
-            <td><%= constancia_documento.user.created_at %></td>
+            <td><%= constancia_documento.user.nombre_completo %></td>
+            <td><%= constancia_documento.creado %></td>
             <td><%= link_to 'Mostrar', constancia_documento %></td>
             <td><%= link_to 'Editar', edit_constancia_documento_path(constancia_documento) %></td>
             <td><%= link_to 'Eliminar', constancia_documento, method: :delete, data: { confirm: '¿Está seguro?' } %></td>

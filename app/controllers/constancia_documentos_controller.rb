@@ -5,7 +5,11 @@ class ConstanciaDocumentosController < ApplicationController
   # GET /constancia_documentos
   # GET /constancia_documentos.json
   def index
-    @constancia_documentos = ConstanciaDocumento.all
+    if current_user.role.nombre == "Dirección"
+      @constancia_documentos = ConstanciaDocumento.where(firma_direccion: nil)
+    else
+      @constancia_documentos = ConstanciaDocumento.all
+    end
     authorize @constancia_documentos
   end
 
