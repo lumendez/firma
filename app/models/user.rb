@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
 
   has_many :constancia_documentos, dependent: :destroy
   belongs_to :role
@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"
+  end
+
+  def ultima_sesion
+    self.last_sign_in_at.strftime("%d/%m/%y a las %T %P")
   end
 
 end

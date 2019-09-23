@@ -7,6 +7,8 @@
       <th>Apellido paterno</th>
       <th>Apellido materno</th>
       <th>Rol</th>
+      <th>Último inicio de sesión</th>
+      <th>Última IP</th>
       <% if policy(@users).show? %>
         <th colspan="3">Opciones</th>
       <% end %>
@@ -20,6 +22,8 @@
         <td><%= user.apellido_paterno %></td>
         <td><%= user.apellido_materno %></td>
         <td><%= user.role.nombre %></td>
+        <td><%= user.ultima_sesion %></td>
+        <td><%= user.last_sign_in_ip %></td>
         <% if policy(@users).show? %>
           <td><%= link_to 'Mostrar', user %></td>
           <td><%= link_to 'Editar', edit_user_path(user) %></td>
