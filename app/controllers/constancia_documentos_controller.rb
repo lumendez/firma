@@ -4,6 +4,7 @@ class ConstanciaDocumentosController < ApplicationController
 
   # GET /constancia_documentos
   # GET /constancia_documentos.json
+=begin
   def index
     if current_user.role.nombre == "Dirección"
       @constancia_documentos = ConstanciaDocumento.where(firma_direccion: nil)
@@ -12,6 +13,31 @@ class ConstanciaDocumentosController < ApplicationController
     end
     authorize @constancia_documentos
   end
+=end
+  def index
+    @filterrific = initialize_filterrific(
+      ConstanciaDocumento,
+      params[:filterrific],
+      sanitize_params: true,
+    ) || return
+
+    @constancia_documentos = @filterrific.find.page(params[:pagina])
+
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+  # Recover from invalid param sets, e.g., when a filter refers to the
+  # database id of a record that doesn’t exist any more.
+  # In this case we reset filterrific and discard all filter params.
+  rescue ActiveRecord::RecordNotFound => e
+    # There is an issue with the persisted param_set. Reset it.
+    puts "Se reasignaron parámetros de filterrific: #{e.message}"
+    redirect_to(reset_filterrific_url(format: :html)) && return
+  end
+
 
   # GET /constancia_documentos/1
   # GET /constancia_documentos/1.json

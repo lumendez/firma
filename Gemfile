@@ -39,7 +39,7 @@ gem 'devise-i18n'
 # Para la paginación del sistema
 gem 'kaminari'
 # Para los estilos de la paginación con kaminari
-gem 'bootstrap-kaminari-views'
+gem 'bootstrap4-kaminari-views'
 # Para el filtrado de los registros
 gem 'filterrific'
 # Para realizar consultas más legibles en la consola

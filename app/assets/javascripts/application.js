@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require jquery
 //= require rails-ujs
+//= require filterrific/filterrific-jquery
 //= require activestorage
 //= require turbolinks
 //= require_tree .

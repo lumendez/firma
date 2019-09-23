@@ -65,7 +65,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap-kaminari-views (0.0.5)
+    bootstrap4-kaminari-views (1.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
     builder (3.2.3)
@@ -283,7 +283,7 @@ DEPENDENCIES
   awesome_rails_console
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
-  bootstrap-kaminari-views
+  bootstrap4-kaminari-views
   byebug
   capybara (>= 2.15)
   chromedriver-helper
