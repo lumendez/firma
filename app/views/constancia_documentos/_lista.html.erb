@@ -52,7 +52,8 @@
   <% end %>
   <% end %>
   <% if policy(@constancia_documentos).new? %>
-    <%= link_to 'Crear nueva constancia', new_constancia_documento_path %>
+    <%= link_to 'Crear nueva constancia', new_constancia_documento_path, class: 'btn btn-primary' %>
+    <br><br>
   <% end %>
   <script>
   $('#selectAll').click(function() {

@@ -114,9 +114,9 @@ class ConstanciaDocumentosController < ApplicationController
       programa_academico = constancia_documento.programa_academico
       periodo = constancia_documento.periodo
       prestatario = constancia_documento.prestatario
-      cadena = folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
+      cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
-      fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico
+      fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
       firma = public_key.public_encrypt(cadena)
       firma_electronica = Base64.encode64(firma)
       constancia_documento.update(firma_direccion: firma_electronica)
