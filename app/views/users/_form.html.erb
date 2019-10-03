@@ -39,46 +39,6 @@
   <div class="actions">
     <%= form.submit "Guardar", class: 'btn btn-primary' %>
     <br><br>
-    <%= link_to "#{@user.otp_module_enabled? ? 'Desabilitar' : 'Habilitar'} autenticación de dos factores",
-                '#two_factor',
-                data: {toggle: :modal},
-                class: 'btn btn-info' %>
+
   </div>
 <% end %>
-
-<div class="modal fade" id="two_factor">
-  <% url = @user.otp_module_enabled? ? disable_multi_factor_authentication_user_path(@user) : enable_multi_factor_authentication_user_path(@user) %>
-  <%= form_for :multi_factor_authentication, url: url, html: { class: 'form-inline' }  do |f| %>
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title"><%= @user.otp_module_enabled? ? 'Desabilitar' : 'Habilitar' %> autenticación de dos factores</h4>
-        </div>
-        <div class="modal-body">
-          <% unless @user.otp_module_enabled? %>
-            <% qr = RQRCode::QRCode.new(user.provisioning_uri, size: 10, level: :h ) %>
-              <%= raw(
-              qr.as_svg(
-                offset: 0,
-                color: '000',
-                shape_rendering: 'crispEdges',
-                module_size: 6,
-                standalone: true
-              ))
-              %>
-            <hr>
-          <% end %>
-          <div class='form-group'>
-            <div class='text-center'>
-              <%= f.text_field :otp_code_token, placeholder: 'Vericar código', class: 'form-control input-lg' %>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <%= f.submit "Actualizar", class: 'btn btn-lg btn-block btn-primary' %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>

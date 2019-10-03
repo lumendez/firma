@@ -6,9 +6,9 @@ class Users::MultiFactorAuthenticationController < ApplicationController
     if current_user == @user &&
        current_user.authenticate_otp(params[:multi_factor_authentication][:otp_code_token], drift: 60)
       current_user.otp_module_enabled!
-      redirect_to edit_user_path, notice: 'Autenticación de dos factores habilitada'
+      redirect_to users_path, notice: 'Autenticación de dos factores habilitada'
     else
-      redirect_to edit_user_path, alert: 'La autenticación de dos factores no puede ser habilitada'
+      redirect_to users_path, alert: 'La autenticación de dos factores no puede ser habilitada'
     end
   end
 
@@ -16,9 +16,9 @@ class Users::MultiFactorAuthenticationController < ApplicationController
     if current_user == @user &&
        current_user.authenticate_otp(params[:multi_factor_authentication][:otp_code_token], drift: 60)
       current_user.otp_module_disabled!
-      redirect_to edit_user_path, notice: 'Autenticación de dos factores desabilitada'
+      redirect_to users_path, notice: 'Autenticación de dos factores desabilitada'
     else
-      redirect_to edit_user_path, alert: 'La autenticación de dos factores no puede ser desabilitada'
+      redirect_to users_path, alert: 'La autenticación de dos factores no puede ser desabilitada'
     end
   end
 

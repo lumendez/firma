@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'El rol fue eliminado correctamente.' }
+      format.html { redirect_to users_url, notice: 'El usuario fue eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

@@ -34,7 +34,11 @@ class User < ApplicationRecord
   end
 
   def ultima_sesion
-    self.last_sign_in_at.strftime("%d/%m/%y a las %T %P")
+    if self.last_sign_in_at?
+      self.last_sign_in_at.strftime("%d/%m/%y a las %T %P")
+    else
+      "Este usuario no ha inciado sesión"
+    end
   end
 
 end

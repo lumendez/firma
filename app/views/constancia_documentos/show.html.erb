@@ -72,14 +72,14 @@
   <strong>Prestatario:</strong>
   <%= @constancia_documento.prestatario %>
 </p>
-<% if @constancia_documento.constancia_emitida? %>
+<% if @constancia_documento.firma_direccion.nil? %>
 <p><strong>Constancia emitida:</strong>
-Válida
+Constancia sin validez
 </p>
 <% else %>
 <p>
   <strong>Constancia emitida:</strong>
-Constancia sin validez
+Válida
 </p>
 <% end %>
 
@@ -94,7 +94,7 @@ Constancia sin validez
   <%= @constancia_documento.firma_direccion %>
 </p>
 
-<p> <strong>Firma valida:</strong>
+<p> <strong>Sello:</strong>
   <%
     private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('private.pem')))
     reg = @constancia_documento
