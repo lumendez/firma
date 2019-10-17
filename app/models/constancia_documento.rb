@@ -75,6 +75,7 @@ class ConstanciaDocumento < ApplicationRecord
   end
 
   def self.actualizar_firma(firma_electronica)
+    
   end
 
 end
