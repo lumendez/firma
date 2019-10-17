@@ -1,4 +1,5 @@
 <h3>Firma Electrónica IPN </h3>
+  <div id="mensajes" class="isa_error"></div>
   <div>
     <div>
       <div>
@@ -51,6 +52,22 @@
           <textarea name="cadenaUnica" id="cadenaUnica" rows="2" cols="50" required="true">{"data":{"cadena":[<%= @constancia_documentos %>]  } }</textarea>
         </div>
       </div>
+      <br>
+      <div>
+        <div>
+          <div>
+            <button name="firmar" id="btn-firmar"  class="btn btn-success" data-loading-text="Verificando..." onclick="firmarLocalmente();">Firmar</button>
+          </div>
+        </div>
+      </div>
+      <div id="modalfirma">
+        <div class="modalconent">
+          <%= image_tag "preloader.gif", alt:"firmando", title:"Firmando" %>
+            <h2 class="text-center">Procesando(puede tardar algunos minutos)...<span class="emisorLabel"></span></h2>
+        </div>
+      </div>
+      <br>
+    <%= form_tag actualizar_firma_constancia_documentos_path, method: :post do %>
       <div>
         <label for="firmaElectronica" >Firma Electrónica</label>
         <div>
@@ -59,21 +76,10 @@
       </div>
     </div>
   </div>
-  <div id="mensajes" class="isa_error"></div>
-    <div>
-      <div>
-        <div>
-          <button name="firmar" id="btn-firmar"  data-loading-text="Verificando..." onclick="firmarLocalmente();">Firmar</button>
-        </div>
-      </div>
-    </div>
-    <div id="modalfirma">
-      <div class="modalconent">
-        <img src="images/preloader.gif" alt="Firmando" title="Firmando" />
-          <h2 class="text-center">Procesando(puede tardar algunos minutos)...<span class="emisorLabel"></span></h2>
-      </div>
-    </div>
-  </div>
+  <br>
+    <%= submit_tag "Guardar firmas", class: 'btn btn-primary' %>
+  <% end %>
+</div>
   <%= javascript_include_tag('jquery-1.12.0.min') %>
   <%= javascript_include_tag('firma-ipn-1.0_batch') %>
   <%= javascript_include_tag('jsrsasign-latest-all-min') %>

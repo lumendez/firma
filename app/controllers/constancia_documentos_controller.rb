@@ -103,6 +103,10 @@ class ConstanciaDocumentosController < ApplicationController
     #@constancia_documentos = ConstanciaDocumento.find(params[:constancia_documento_ids])
   end
 
+  def actualizar_firma
+    ConstanciaDocumento.actualizar_firma(params[:firmaElectronica])
+  end
+
   def imprimir
     @constancia_documento = ConstanciaDocumento.find_by uuid: params[:uuid]
     respond_to do |format|

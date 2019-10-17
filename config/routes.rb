@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'firmar'
       get 'imprimir/:uuid', to: 'constancia_documentos#imprimir',  as: 'imprimir'
+      post 'actualizar_firma'
     end
   end
   devise_scope :user do

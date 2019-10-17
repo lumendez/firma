@@ -74,4 +74,7 @@ class ConstanciaDocumento < ApplicationRecord
     objetos.to_json
   end
 
+  def self.actualizar_firma(firma_electronica)
+  end
+
 end
