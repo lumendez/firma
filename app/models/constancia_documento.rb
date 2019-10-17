@@ -50,7 +50,7 @@ class ConstanciaDocumento < ApplicationRecord
 
   def self.formar_cadena(constancia_documento_ids)
     constancia_documentos = ConstanciaDocumento.find(constancia_documento_ids)
-    objetos = Hash.new
+    cadenas = []
     constancia_documentos.each do |constancia_documento|
       folio = constancia_documento.folio
       numero_relacion = constancia_documento.numero_relacion
@@ -68,14 +68,20 @@ class ConstanciaDocumento < ApplicationRecord
       cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
       fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
+      objetos = Hash.new
       objetos["cadena"] = cadena
       objetos["id"] = constancia_documento.id
+      cadenas << objetos
     end
-    objetos.to_json
+    cadenas.to_json
   end
 
   def self.actualizar_firma(firma_electronica)
-    
+      firma_electronica[:data][:cadena].each do |x|
+      #constancia = ConstanciaDocumento.find("#{x[:id]}")
+      #constancia.update_attributes(firma_direccion: "#{x[:firma]}")
+      puts "#{x[:id]}"
+    end
   end
 
 end
