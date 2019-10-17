@@ -98,8 +98,9 @@ class ConstanciaDocumentosController < ApplicationController
   end
 
   def firmar
-    ConstanciaDocumento.firmar(params[:constancia_documento_ids])
-    redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
+    @constancia_documentos = ConstanciaDocumento.formar_cadena(params[:constancia_documento_ids])
+    #redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
+    #@constancia_documentos = ConstanciaDocumento.find(params[:constancia_documento_ids])
   end
 
   def imprimir

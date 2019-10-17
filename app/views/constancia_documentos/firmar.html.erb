@@ -1,0 +1,80 @@
+<h3>Firma Electrónica IPN </h3>
+  <div>
+    <div>
+      <div>
+        <label for="certificate">Certificado (cer)</label>
+          <div>
+            <div>
+              <input name="fileCerName" id="certificate" type="text"  size="25" readonly/>
+              <span>
+                <span> Buscar
+                  <input name="fileCer" type="file" accept=".cer" required="true" data-rule-extension="cer" data-msg-extension="Por favor, se requiere archivo con extensión aceptada .CER" />
+                </span>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div>
+        <label for="privateKey">Clave privada (key)</label>
+        <div>
+          <div>
+            <input name="fileKeyName" id="privateKey" type="text" size="25" readonly/>
+              <span>
+                <span>Buscar
+                  <input name="fileKey" type="file" accept=".key" required="true" data-rule-extension="key" data-msg-extension="Por favor, se requiere archivo con extensión aceptada .KEY" />
+                </span>
+              </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="pwdPrivateKey" >Contraseña de clave privada</label>
+        <div>
+          <input type="password" id="pwdPrivateKey" name="pwdPrivateKey" size="25" autocomplete="off" required="true" value="" />
+        </div>
+      </div>
+      <div>
+        <label for="rfcSesion" >RFC Sesión*</label>
+        <div>
+          <input type="text" id="rfcSesion" name="rfcSesion"  size="26" value="" />
+        </div>
+      </div>
+      <div>
+        <label for="rfcEmisor">RFC</label>
+        <div>
+          <input type="text" id="rfcEmisor" name="rfcEmisor"  size="26" readonly="false" />
+        </div>
+      </div>
+      <div>
+        <label for="cadenaUnica">Cadena única*</label>
+        <div>
+          <textarea name="cadenaUnica" id="cadenaUnica" rows="2" cols="50" required="true">{"data":{"cadena":[<%= @constancia_documentos %>]  } }</textarea>
+        </div>
+      </div>
+      <div>
+        <label for="firmaElectronica" >Firma Electrónica</label>
+        <div>
+          <textarea name="firmaElectronica" id="firmaElectronica" rows="4" cols="50" required="true" readonly="true" ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="mensajes" class="isa_error"></div>
+    <div>
+      <div>
+        <div>
+          <button name="firmar" id="btn-firmar"  data-loading-text="Verificando..." onclick="firmarLocalmente();">Firmar</button>
+        </div>
+      </div>
+    </div>
+    <div id="modalfirma">
+      <div class="modalconent">
+        <img src="images/preloader.gif" alt="Firmando" title="Firmando" />
+          <h2 class="text-center">Procesando(puede tardar algunos minutos)...<span class="emisorLabel"></span></h2>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag('jquery-1.12.0.min') %>
+  <%= javascript_include_tag('firma-ipn-1.0_batch') %>
+  <%= javascript_include_tag('jsrsasign-latest-all-min') %>
+  <%= javascript_include_tag('validator') %>

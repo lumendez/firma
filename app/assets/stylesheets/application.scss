@@ -2740,3 +2740,28 @@
 }
 .qr td.black { background-color: #000; }
 .qr td.white { background-color: #fff; }
+
+#modalfirma {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     background: rgba(0, 0, 0, 0.5);
+     z-index: 99999;
+     height: 100%;
+     width: 100%;
+ }
+ .modalconent {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background: #fff;
+     width: 50%;
+     padding: 20px;
+ }
+
+ .isa_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}

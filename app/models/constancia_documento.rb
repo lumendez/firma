@@ -48,9 +48,9 @@ class ConstanciaDocumento < ApplicationRecord
     uuid
   end
 
-  def self.firmar(constancia_documento_ids)
-    public_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('public.pem')))
+  def self.formar_cadena(constancia_documento_ids)
     constancia_documentos = ConstanciaDocumento.find(constancia_documento_ids)
+    objetos = Hash.new
     constancia_documentos.each do |constancia_documento|
       folio = constancia_documento.folio
       numero_relacion = constancia_documento.numero_relacion
@@ -68,10 +68,10 @@ class ConstanciaDocumento < ApplicationRecord
       cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
       fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
-      firma = public_key.public_encrypt(cadena)
-      firma_electronica = Base64.encode64(firma)
-      constancia_documento.update(firma_direccion: firma_electronica)
+      objetos["cadena"] = cadena
+      objetos["id"] = constancia_documento.id
     end
+    objetos.to_json
   end
 
 end
