@@ -105,6 +105,7 @@ class ConstanciaDocumentosController < ApplicationController
 
   def actualizar_firma
     ConstanciaDocumento.actualizar_firma(params[:firmaElectronica])
+    redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
   end
 
   def imprimir

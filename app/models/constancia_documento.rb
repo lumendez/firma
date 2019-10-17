@@ -77,10 +77,10 @@ class ConstanciaDocumento < ApplicationRecord
   end
 
   def self.actualizar_firma(firma_electronica)
-      firma_electronica[:data][:cadena].each do |x|
-      #constancia = ConstanciaDocumento.find("#{x[:id]}")
-      #constancia.update_attributes(firma_direccion: "#{x[:firma]}")
-      puts "#{x[:id]}"
+    hash_firma = eval(firma_electronica)
+    hash_firma[:data][:cadena].each do |x|
+      constancia = ConstanciaDocumento.find("#{x[:id]}")
+      constancia.update_attributes(firma_direccion: "#{x[:firma]}")
     end
   end
 
