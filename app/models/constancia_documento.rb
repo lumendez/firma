@@ -68,6 +68,7 @@ class ConstanciaDocumento < ApplicationRecord
       cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
       fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
+      constancia_documento.update_attributes(firma_departamento: cadena)
       objetos = Hash.new
       objetos["cadena"] = cadena
       objetos["id"] = constancia_documento.id

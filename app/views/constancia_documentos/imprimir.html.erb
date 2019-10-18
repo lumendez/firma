@@ -108,19 +108,13 @@
     </td>
     <td style="padding-left: 10px">
       <strong>Firma electrónica:</strong><br>
-      <%= @constancia_documento.firma_direccion %>
+      <%= @constancia_documento.firma_direccion.scan(/.{1}/).join("\n") %>
     </td>
   </tr>
   <tr>
     <td style="padding-left: 10px">
       <strong>Sello:</strong><br>
-      <%
-        private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('private.pem')))
-        reg = @constancia_documento
-        info = reg.firma_direccion.gsub("\n","")
-        infobin = Base64.decode64(info)
-      %>
-      <%= private_key.private_decrypt(infobin) %>
+      <%= @constancia_documento.firma_departamento %>
     </td>
   </tr>
   </table>

@@ -94,16 +94,6 @@ Válida
   <%= @constancia_documento.firma_direccion %>
 </p>
 
-<p> <strong>Sello:</strong>
-  <%
-    private_key = OpenSSL::PKey::RSA.new(File.read(Rails.root.join('private.pem')))
-    reg = @constancia_documento
-    info = reg.firma_direccion.gsub("\n","")
-    infobin = Base64.decode64(info)
-  %>
-  <%= private_key.private_decrypt(infobin) %>
-</p>
-
 <p>
   <%= link_to "Descargar constancia", imprimir_constancia_documentos_path(@constancia_documento.uuid, format: :pdf),
   target:"_blank" %>
