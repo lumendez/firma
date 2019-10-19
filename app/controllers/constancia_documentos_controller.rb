@@ -4,22 +4,22 @@ class ConstanciaDocumentosController < ApplicationController
 
   # GET /constancia_documentos
   # GET /constancia_documentos.json
-=begin
+
+  # Se muestran las conctancias al director unicamente sino están firmadas
   def index
     if current_user.role.nombre == "Dirección"
-      @constancia_documentos = ConstanciaDocumento.where(firma_direccion: nil)
+      @filterrific = initialize_filterrific(
+        ConstanciaDocumento.where(firma_direccion: nil).order('created_at DESC'),
+        params[:filterrific],
+        sanitize_params: true,
+      ) || return
     else
-      @constancia_documentos = ConstanciaDocumento.all
+      @filterrific = initialize_filterrific(
+        ConstanciaDocumento.order('created_at DESC'),
+        params[:filterrific],
+        sanitize_params: true,
+      ) || return
     end
-    authorize @constancia_documentos
-  end
-=end
-  def index
-    @filterrific = initialize_filterrific(
-      ConstanciaDocumento,
-      params[:filterrific],
-      sanitize_params: true,
-    ) || return
 
     @constancia_documentos = @filterrific.find.page(params[:pagina])
 

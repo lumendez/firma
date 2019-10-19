@@ -48,6 +48,10 @@ class ConstanciaDocumento < ApplicationRecord
     uuid
   end
 
+  def nombre_completo
+    "#{nombre} #{apellido_paterno} #{apellido_materno}"
+  end
+
   def self.formar_cadena(constancia_documento_ids)
     constancia_documentos = ConstanciaDocumento.find(constancia_documento_ids)
     cadenas = []
@@ -60,6 +64,8 @@ class ConstanciaDocumento < ApplicationRecord
       clave_programa = constancia_documento.clave_programa
       fecha = constancia_documento.fecha
       nombre = constancia_documento.nombre
+      paterno = constancia_documento.apellido_paterno
+      materno = constancia_documento.apellido_materno
       boleta = constancia_documento.boleta
       unidad_academica = constancia_documento.unidad_academica
       programa_academico = constancia_documento.programa_academico
@@ -67,7 +73,7 @@ class ConstanciaDocumento < ApplicationRecord
       prestatario = constancia_documento.prestatario
       cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
-      fecha + '|' + nombre + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
+      fecha + '|' + nombre + ' ' + paterno + ' ' + materno + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
       constancia_documento.update_attributes(firma_departamento: cadena)
       objetos = Hash.new
       objetos["cadena"] = cadena
