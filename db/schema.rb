@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_073506) do
+ActiveRecord::Schema.define(version: 2019_10_19_011003) do
 
   create_table "constancia_documentos", force: :cascade do |t|
     t.string "folio"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_073506) do
     t.string "apellido_materno"
     t.integer "user_id"
     t.string "uuid"
+    t.string "correo"
     t.index ["user_id"], name: "index_constancia_documentos_on_user_id"
   end
 

@@ -99,8 +99,6 @@ class ConstanciaDocumentosController < ApplicationController
 
   def firmar
     @constancia_documentos = ConstanciaDocumento.formar_cadena(params[:constancia_documento_ids])
-    #redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
-    #@constancia_documentos = ConstanciaDocumento.find(params[:constancia_documento_ids])
   end
 
   def actualizar_firma
@@ -133,7 +131,7 @@ class ConstanciaDocumentosController < ApplicationController
         :numero_oficio, :numero_registro, :codigo_prestatario, :clave_programa,
         :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
         :periodo, :prestatario, :constancia_emitida, :apellido_paterno,
-        :apellido_materno, :user_id)
+        :apellido_materno, :correo, :user_id)
     end
 
     def constancia_documento
