@@ -392,6 +392,7 @@ PKI.IPN.FielUtil = new function () {
     this.prfc = function (l) {
     	this.rfc = this.obtenRfc(l);
         $.find('[name="rfcEmisor"]')[0].value = this.rfc;
+        $.find('[name="rfcSesion"]')[0].value = this.rfc;
     };
     this.prsc = function (l) {
     	this.sncrt = this.obtenNumSerie(l);
