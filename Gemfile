@@ -62,6 +62,7 @@ gem 'rqrcode'
 gem 'rqrcode_png'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'passenger'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
