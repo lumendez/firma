@@ -68,7 +68,7 @@ Rails.application.configure do
     port: 587,
     domain: "ACTIVEDIRECTORY",
     authentication: "login",
-    enable_starttls_auto: true,
+    enable_starttls_auto: false,
     user_name: ENV['ipn_username'],
     password: ENV['ipn_password']
 }
