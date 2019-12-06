@@ -59,7 +59,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.time_zone = 'America/Mexico_City'
-  config.action_mailer.default_url_options = { host: 'serviciosocialconstancias.ipn.mx', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'serviciosocialconstancias.ipn.mx', port: 443 }
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
