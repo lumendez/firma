@@ -60,7 +60,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.time_zone = 'America/Mexico_City'
   config.action_mailer.default_url_options = { host: 'serviciosocialconstancias.ipn.mx', port: 3000 }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
 end
