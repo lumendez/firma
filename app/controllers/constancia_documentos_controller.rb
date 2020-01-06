@@ -118,6 +118,10 @@ class ConstanciaDocumentosController < ApplicationController
     end
   end
 
+  def consultar_datos
+    @respuesta = ConstanciaDocumento.consultar_ws_dae(params[:boleta])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_constancia_documento

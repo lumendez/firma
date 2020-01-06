@@ -63,6 +63,8 @@ gem 'rqrcode_png'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'passenger'
+# Para el consumo del webservice de la DAE/RENAPO
+gem 'rest-client'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

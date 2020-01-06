@@ -1,7 +1,5 @@
 <h3>Firma Electrónica IPN </h3>
-  <div id="mensajes" class="isa_error"></div>
-  <div>
-    <div>
+  <!--<div id="mensajes" class="isa_error"></div>-->
       <div>
         <label for="certificate">Certificado (cer)</label>
           <div>
@@ -74,12 +72,9 @@
           <textarea name="firmaElectronica" id="firmaElectronica" rows="4" cols="50" required="true" readonly="true" ></textarea>
         </div>
       </div>
-    </div>
-  </div>
   <br>
     <%= submit_tag "Guardar firmas", class: 'btn btn-primary' %>
   <% end %>
-</div>
   <%= javascript_include_tag('jquery-1.12.0.min') %>
   <%= javascript_include_tag('firma-ipn-1.0_batch') %>
   <%= javascript_include_tag('jsrsasign-latest-all-min') %>

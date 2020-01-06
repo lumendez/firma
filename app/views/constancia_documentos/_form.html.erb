@@ -10,24 +10,52 @@
       </ul>
     </div>
   <% end %>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <%= form.label :boleta %>
+        <%= form.text_field :boleta, class:"form-control col-md-8" %>
+        <%#= link_to 'Consultar datos', '#', id: 'consulta-datos', remote: false, class: 'btn btn-primary' %>
+      </div>
 
-  <form>
+      <div class="form-group col-md-4">
+        <%= form.label :unidad_academica %>
+        <%= form.text_field :unidad_academica, class:"form-control" %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :programa_academico %>
+        <%= form.text_field :programa_academico, class:"form-control" %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <%= form.label :nombre %>
+        <%= form.text_field :nombre, class:"form-control" %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :apellido_paterno %>
+        <%= form.text_field :apellido_paterno, class:"form-control" %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :apellido_materno %>
+        <%= form.text_field :apellido_materno, class:"form-control"%>
+      </div>
+    </div>
     <div class="form-row">
         <div class="form-group col-md-3">
           <%= form.label :folio %>
-          <%= form.text_field :folio, class:"form-control " %>
+          <%= form.text_field :folio, class:"form-control" %>
         </div>
         <div class="form-group col-md-3">
           <%= form.label :numero_relacion %>
-          <%= form.text_field :numero_relacion, class:"form-control " %>
+          <%= form.text_field :numero_relacion, class:"form-control" %>
         </div>
         <div class="form-group col-md-3">
           <%= form.label :numero_oficio %>
-          <%= form.text_field :numero_oficio, class:"form-control " %>
+          <%= form.text_field :numero_oficio, class:"form-control" %>
         </div>
         <div class="form-group col-md-3">
           <%= form.label :numero_registro %>
-          <%= form.text_field :numero_registro, class:"form-control " %>
+          <%= form.text_field :numero_registro, class:"form-control" %>
         </div>
     </div>
     <div class="form-row">
@@ -41,42 +69,14 @@
       </div>
       <div class="form-group col-md-3">
         <%= form.label :fecha %>
-        <%= form.text_field :fecha, class:"form-control " %>
+        <%= form.text_field :fecha, class:"form-control" %>
       </div>
       <div class="form-group col-md-3"></div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
-        <%= form.label :nombre %>
-        <%= form.text_field :nombre, class:"form-control" %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= form.label :apellido_paterno %>
-        <%= form.text_field :apellido_paterno, class:"form-control " %>
-      </div>
-      <div class="form-group col-md-4"> 
-        <%= form.label :apellido_materno %>
-        <%= form.text_field :apellido_materno, class:"form-control  "%>
-      </div> 
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <%= form.label :boleta %>
-        <%= form.text_field :boleta, class:"form-control col-md-8" %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= form.label :unidad_academica %>
-        <%= form.text_field :unidad_academica, class:"form-control " %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= form.label :programa_academico %>
-        <%= form.text_field :programa_academico, class:"form-control " %>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
         <%= form.label :periodo %>
-        <%= form.text_field :periodo, class:"form-control " %>
+        <%= form.text_field :periodo, class:"form-control" %>
       </div>
       <div class="col-md-4">
         <%= form.label :prestatario %>
@@ -86,10 +86,12 @@
         <%= form.label :correo %>
         <%= form.text_field :correo, class:"form-control" %>
       </div>
-      <div class="col-md-4">
-        <%= form.label :constancia_emitida %>
-        <%= form.check_box :constancia_emitida, class:"form-control col-sm-1" %>
-      </div>
+      <% if policy(:constancia_documento).update? %>
+        <div class="col-md-4">
+          <%= form.label :constancia_emitida %>
+          <%= form.check_box :constancia_emitida, class:"form-control col-sm-1" %>
+        </div>
+      <% end %>
     </div>
     <div class="form-row">
         <div class="col-md-4"></div>
@@ -98,5 +100,4 @@
          <%= form.submit "Guardar", class: 'btn btn-primary' %>
         </div>
     </div>
-  </form>
 <% end %>
