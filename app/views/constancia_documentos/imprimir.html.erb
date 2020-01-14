@@ -1,125 +1,103 @@
 <div class="fondo-oficios">
+  <table width="100%">
+      <tr>
+          <td class="sello-sep" width="15%">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </td>
+          <td style="text-align:center" width="85%">
+            <span style="font-size:28px; font-weight:bold">INSTITUTO POLITÉCNICO NACIONAL</span><br>
+            <span style="font-size:22px; font-weight:bold">SECRETARÍA DE EXTENSIÓN E INTEGRACIÓN SOCIAL</span><br>
+            <span style="font-size:20px; font-weight:bold">DIRECCIÓN DE EGRESADOS Y SERVICIO SOCIAL</span><br>
+            <span style="font-size:18px; font-weight:bold">DIVISIÓN DE SERVICIO SOCIAL</span><br>
+            <span style="font-size:16px; font-weight:bold">DEPARTAMENTO DE CONTROL Y TRÁMITE DE SERVICIO SOCIAL</span>
+          </td>
+          <td>
 
-<p style="text-align:right;">
-  <strong>Folio:</strong>
-  <%= @constancia_documento.folio %>
-</p>
-<br><br><br><br><br>
-<br><br><br><br><br>
-<p>
-  &nbsp;
-</p>
-
-<p style="text-align:right">
-  <%= @constancia_documento.numero_oficio %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br>
-  <%= @constancia_documento.numero_registro %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br>
-  <%= @constancia_documento.codigo_prestatario %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br>
-  <%= @constancia_documento.clave_programa %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br>
-  <%= @constancia_documento.fecha %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</p>
-
-<br><br><br><br><br>
-<br><br><br><br><br>
-<p>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;
-  <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %>
-  <%= @constancia_documento.apellido_materno %>
-  <br>
-  <br>
-  <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;
-  <%= @constancia_documento.boleta %>
-  <br>
-  <br>
-  <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;
-  <%= @constancia_documento.unidad_academica %>
-  <br>
-  <br>
-  <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;
-  <%= @constancia_documento.programa_academico %>
-  <br>
-  <br>
-  <br>
-  <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;
-
-  <%= @constancia_documento.periodo %>
-  <br>
-  <br>
-  <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;
-  <%= @constancia_documento.prestatario %>
-</p>
-<br><br><br><br><br>
-<table style="font-size:9px; margin:0 auto;" width="800">
-  <tr>
-    <td rowspan="2">
-      <% qr = RQRCode::QRCode.new(constancia_documento_url(@constancia_documento.uuid), size: 10, level: :h ) %>
-        <%= raw(
-        qr.as_svg(
-          offset: 0,
-          color: '000',
-          shape_rendering: 'crispEdges',
-          module_size: 2,
-          standalone: true
-        ))
-        %>
-    </td>
-    <td style="padding-left: 10px">
-      <strong>Firma electrónica:</strong><br>
-      <%= @constancia_documento.firma_direccion.scan(/.{1}/).join("\n") %>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding-left: 10px">
-      <strong>Sello:</strong><br>
-      <%= @constancia_documento.firma_departamento %>
-    </td>
-  </tr>
+          </td>
+      </tr>
   </table>
-<p style="text-align:center">
-
-</p>
-<br><br><br>
+  <br>
+  <table width="100%">
+    <tr>
+      <td colspan="2">
+      </td>
+      <td width="35%">
+        <span style="font-size:14px"><strong>Asunto:</strong> CONSTANCIA DE SERVICIO SOCIAL
+        <br><strong>Oficio:</strong> <%= @constancia_documento.numero_oficio %>
+        <br><strong>Registro:</strong> <%= @constancia_documento.numero_registro %>
+        <br><strong>Código de prestatario:</strong> <%= @constancia_documento.codigo_prestatario %>
+        <br><strong>Clave del programa:</strong> <%= @constancia_documento.clave_programa %>
+        <br><strong>Cd. de México a:</strong> <%= @constancia_documento.fecha %></span>
+      </td>
+    </tr>
+  </table>
+  <p style="font-size:18px"><strong>
+   C. DIRECTOR GENERAL DE PROFESIONES<br>
+   SECRETARÍA DE EDUCACIÓN PÚBLICA<br>
+   INSURGENTES SUR No. 2387<br>
+   CIUDAD DE MÉXICO, C.P. 01000<br></strong>
+  </p>
+  <p align="justify" style="font-size:18px"><strong>
+    La Dirección de Egresados y Servicio Social del Instituto Politécnico
+    Nacional, con base en las disposiciones contenidas en la Ley Reglamentaria
+    del Artículo 5° Constitucional y de su Reglamento, así como del Reglamento de
+    Servicio Social propio del Instituto, hace constar que, según documentos que
+    obran en los archivos del Departamento de Control y Trámite de Servicio
+    Social, el alumno:</strong><br>
+    <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %> <%= @constancia_documento.apellido_materno %><br>
+    <strong>boleta:</strong> <br>
+   <%= @constancia_documento.boleta %><br>
+   <strong>de la Unidad Académica:</strong><br>
+   <%= @constancia_documento.unidad_academica %><br>
+   <strong>pasante del programa académico:</strong><br>
+   <%= @constancia_documento.programa_academico %><br>
+   <strong>ha cumplido con su SERVICIO SOCIAL durante el periodo comprendido del:</strong><br>
+   <%= @constancia_documento.periodo %><br>
+   <strong>prestando sus servicios en:</strong><br>
+   <%= @constancia_documento.prestatario %><br>
+  </p>
+  <p align="center" style="font-size:20px">
+    <strong>"LA TÉCNICA AL SERVICIO DE LA PATRIA"</strong>
+  </p>
+  <p align="center" style="font-size:16px">
+    <strong>DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</strong>
+  </p>
+  <table style="font-size:12px; margin:0 auto;" width="800">
+    <tr>
+      <td rowspan="2">
+        <% qr = RQRCode::QRCode.new(constancia_documento_url(@constancia_documento.uuid), size: 10, level: :h ) %>
+          <%= raw(
+          qr.as_svg(
+            offset: 0,
+            color: '000',
+            shape_rendering: 'crispEdges',
+            module_size: 3,
+            standalone: true
+          ))
+          %>
+      </td>
+      <td style="padding-left: 10px">
+        <strong>Firma electrónica:</strong><br>
+        <%= @constancia_documento.firma_direccion.scan(/.{1}/).join("\n") %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-left: 10px">
+        <strong>Sello:</strong><br>
+        <%= @constancia_documento.firma_departamento %>
+      </td>
+    </tr>
+    </table>
+    <p align="center" style="font-size:18px">
+      <strong>M. EN E. JUAN VALDÉS RODRÍGUEZ</strong>
+    </p>
 </div>
