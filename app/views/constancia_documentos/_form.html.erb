@@ -51,7 +51,7 @@
         </div>
         <div class="form-group col-md-3">
           <%= form.label :numero_oficio %>
-          <%= form.text_field :numero_oficio, class:"form-control" %>
+          <%= form.text_field :numero_oficio, value: "DESS/DSS/", class:"form-control" %>
         </div>
         <div class="form-group col-md-3">
           <%= form.label :numero_registro %>
@@ -68,7 +68,7 @@
         <%= form.text_field :clave_programa, class:"form-control" %>
       </div>
       <div class="form-group col-md-3">
-        <%= form.label :fecha %>
+        <%= form.label :fecha, 'Fecha de captura' %>
         <%= form.text_field :fecha, class:"form-control" %>
       </div>
       <div class="form-group col-md-3"></div>

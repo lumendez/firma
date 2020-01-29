@@ -71,9 +71,12 @@ class ConstanciaDocumento < ApplicationRecord
       programa_academico = constancia_documento.programa_academico
       periodo = constancia_documento.periodo
       prestatario = constancia_documento.prestatario
+      creado = constancia_documento.created_at.to_s
+      uuid = constancia_documento.uuid
       cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
-      fecha + '|' + nombre + ' ' + paterno + ' ' + materno + '|' + boleta + '|' + unidad_academica + '|' + programa_academico + '||'
+      fecha + '|' + nombre + '|' + paterno + '|' + materno + '|' + boleta + '|' +
+      unidad_academica + '|' + programa_academico + '|' + creado + '|' + uuid +'||'
       constancia_documento.update_attributes(firma_departamento: cadena)
       objetos = Hash.new
       objetos["cadena"] = cadena

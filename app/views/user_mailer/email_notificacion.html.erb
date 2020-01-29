@@ -1,6 +1,12 @@
-<h1>Estimado <%= @constancia_documento.nombre_completo %></h1>
-<h2>Su constancia de Servicio Social ha sido emitida.</h2>
-<p>Puede verla a través del siguiente enlace: https://serviciosocialconstancias.ipn.mx/constancia_documento/<%= @constancia_documento.uuid %></p>
-<p>
-  Este correo se envía de forma automática, por favor no lo responda.
-</p>
+<h4>Estimado <%= @constancia_documento.nombre_completo %></h4>
+<p>La Secretaría de Extensión e Integración Social, a través de la Dirección de
+  Egresados y Servicio Social le comunica que <strong>Su constancia de Servicio Social
+  ha sido emitida</strong> con base en el cumplimiento de lo
+  dispuesto en la Ley Reglamentaria del Artículo 5° Constitucional, así como de
+  Reglamento de Servicio Social del Instituto Politécnico Nacional.</p>
+
+<p>Puede descargar su Constancia de Servicio Social a través del siguiente
+   enlace: https://serviciosocialconstancias.ipn.mx/constancia_documento/<%= @constancia_documento.uuid %></p>
+
+<p>Sin otro particular, reciba un cordial saludo</p>
+<p>Este correo se envía de forma automática, por favor no lo responda.</p>

@@ -1,5 +1,5 @@
 class ConstanciaDocumentosController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :imprimir]
   before_action :set_constancia_documento, only: [:show, :edit, :update, :destroy]
 
   # GET /constancia_documentos
