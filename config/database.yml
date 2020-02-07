@@ -20,6 +20,14 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+#production:
+  #<<: *default
+  #database: db/production.sqlite3
+
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['mysql_dess_db'] %>
+  username: <%= ENV['mysql_dess_usr'] %>
+  password: <%= ENV['mysql_dess_psw'] %>
+  host: <%= ENV['mysql_dess_host'] %>
