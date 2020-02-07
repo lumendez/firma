@@ -27,7 +27,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
+  host: <%= ENV['mysql_dess_host'] %>
+  port: <%= ENV['mysql_dess_port'] %>
   database: <%= ENV['mysql_dess_db'] %>
   username: <%= ENV['mysql_dess_usr'] %>
   password: <%= ENV['mysql_dess_psw'] %>
-  host: <%= ENV['mysql_dess_host'] %>
