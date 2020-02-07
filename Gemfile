@@ -65,6 +65,8 @@ gem 'rqrcode_png'
 gem 'passenger'
 # Para el consumo del webservice de la DAE/RENAPO
 gem 'rest-client'
+# Para la conexion a la base de datos
+gem "mysql2"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
