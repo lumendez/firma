@@ -131,7 +131,7 @@ class ConstanciaDocumentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def constancia_documento_params
-      params.require(:constancia_documento).permit(:folio, :numero_relacion,
+      params.require(:constancia_documento).permit(:numero_relacion,
         :numero_oficio, :numero_registro, :codigo_prestatario, :clave_programa,
         :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
         :periodo, :prestatario, :constancia_emitida, :apellido_paterno,

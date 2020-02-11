@@ -1,7 +1,7 @@
 class ConstanciaDocumento < ApplicationRecord
   uuidable
 
-  validates :folio, :numero_relacion,
+  validates :numero_relacion,
     :numero_oficio, :numero_registro, :codigo_prestatario, :clave_programa,
     :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
     :periodo, :prestatario, :apellido_paterno, :user_id,
@@ -56,7 +56,6 @@ class ConstanciaDocumento < ApplicationRecord
     constancia_documentos = ConstanciaDocumento.find(constancia_documento_ids)
     cadenas = []
     constancia_documentos.each do |constancia_documento|
-      folio = constancia_documento.folio
       numero_relacion = constancia_documento.numero_relacion
       numero_oficio = constancia_documento.numero_oficio
       numero_registro = constancia_documento.numero_registro
@@ -73,7 +72,7 @@ class ConstanciaDocumento < ApplicationRecord
       prestatario = constancia_documento.prestatario
       creado = constancia_documento.created_at.to_s
       uuid = constancia_documento.uuid
-      cadena = '||' + folio + '|' + numero_relacion + '|' + numero_oficio + '|' +
+      cadena = '||' + numero_relacion + '|' + numero_oficio + '|' +
       numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
       fecha + '|' + nombre + '|' + paterno + '|' + materno + '|' + boleta + '|' +
       unidad_academica + '|' + programa_academico + '|' + creado + '|' + uuid +'||'
