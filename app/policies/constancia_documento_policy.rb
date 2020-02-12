@@ -19,6 +19,10 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
     user.administrador? or user.departamento?
   end
 
+  def validar_emision?
+    user.administrador? or user.departamento?
+  end
+
   def update?
     user.administrador? or user.direccion? or user.departamento? or user.captura?
   end
