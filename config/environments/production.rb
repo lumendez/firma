@@ -95,4 +95,6 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = {from: 'dctss@ipn.mx'}
+  config.time_zone = 'America/Mexico_City'
+  config.action_mailer.default_url_options = { host: 'serviciosocialconstancias.ipn.mx', port: 443 }
 end
