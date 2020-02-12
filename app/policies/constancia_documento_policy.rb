@@ -12,14 +12,22 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def show?
+    user.administrador? or user.departamento? or user.captura?
+  end
+
+  def datos_captura?
     user.administrador? or user.departamento?
   end
 
   def update?
-    user.administrador? or user.direccion? or user.departamento?
+    user.administrador? or user.direccion? or user.departamento? or user.captura?
   end
 
   def firmar?
     user.direccion?
+  end
+
+  def eliminar?
+    user.administrador? or user.departamento?
   end
 end

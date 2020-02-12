@@ -9,7 +9,8 @@ class ConstanciaDocumento < ApplicationRecord
 
   filterrific(
     available_filters: [
-      :search_query
+      :search_query,
+      :unidad_academica,
     ],
   )
 
@@ -92,6 +93,19 @@ class ConstanciaDocumento < ApplicationRecord
       constancia.update_attributes(firma_direccion: "#{x[:firma]}")
       UserMailer.email_notificacion(constancia).deliver unless constancia.invalid?
     end
+  end
+
+  scope :unidad_academica, lambda { |unidad_academica|
+    where(unidad_academica: [*unidad_academica])
+  }
+
+  def self.options_for_unidad_academica
+    [
+      ["EST", "ESCUELA SUPERIOR DE TURISMO"],
+      ["CECYT 17", "CECYT 17 LEON GUANAJUATO"],
+      ["ESIME CULHUACAN", "ESIME CULHUACAN"],
+      ["ESIME ZACATENCO", "ESIME ZACATENCO"],
+    ]
   end
 
 end

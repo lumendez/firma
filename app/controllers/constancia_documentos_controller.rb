@@ -17,6 +17,10 @@ class ConstanciaDocumentosController < ApplicationController
       @filterrific = initialize_filterrific(
         ConstanciaDocumento.order('created_at DESC'),
         params[:filterrific],
+        select_options: {
+          unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+        },
+        available_filters: [:unidad_academica],
         sanitize_params: true,
       ) || return
     end

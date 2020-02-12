@@ -1,37 +1,46 @@
 <h1>Buscar constancias</h1>
 
 <%= form_for_filterrific @filterrific do |f| %>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.label :search_query, 'Boleta' %>
-        <%= f.text_field(
-          :search_query,
-          class: 'filterrific-periodically-observed form-control col-md-7'
-        ) %>
-          <br>
-        <div>
-        <%= link_to(
-          'Quitar filtros',
-          reset_filterrific_url,
-          class: 'btn btn-primary'
-        ) %>
-        </div>
-      </div>
-      <div class="col-md-4"> </div>
-      <div class="col-md-4" align="right"> 
-          <br><br><br>
-          <% if policy(@constancia_documentos).new? %>
-          <%= link_to 'Crear nueva constancia', new_constancia_documento_path, class: 'btn btn-primary' %>
-          <% end %>
-      </div>
+  <div class="row">
+    <div class="col-md-12" align="right">
+      <br><br><br>
+      <% if policy(@constancia_documentos).new? %>
+      <%= link_to 'Crear nueva constancia', new_constancia_documento_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :search_query, 'Boleta' %>
+      <%= f.text_field(
+        :search_query,
+        class: 'filterrific-periodically-observed form-control col-md-7'
+      ) %>
+    </div>
+    <!--<div class="col-md-4">
+      <%#= f.label :search_query, 'Escuela' %>
+      <%#= f.select(
+        :unidad_academica,
+        @filterrific.select_options[:unidad_academica],
+        { include_blank: '- Cualquiera -' },
+        class: 'form-control col-md-7'
+      ) %>
+    </div>-->
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to(
+        'Quitar filtros',
+        reset_filterrific_url,
+        class: 'btn btn-primary'
+      ) %>
     </div>
   </div>
 
 
   <br>
-  <%# add an automated spinner to your form when the list is refreshed %>
-  <%#= render_filterrific_spinner %>
 <% end %>
 
 <%= render(
