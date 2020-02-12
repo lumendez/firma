@@ -108,4 +108,58 @@ class ConstanciaDocumento < ApplicationRecord
     ]
   end
 
+  def self.fecha_alfanumerica
+    dia = Time.now.day
+    if dia == 1
+      dia = "01"
+    elsif dia == 2
+      dia = "02"
+    elsif dia == 3
+      dia = "03"
+    elsif dia == 4
+      dia = "04"
+    elsif dia == 5
+      dia = "05"
+    elsif dia == 6
+      dia = "06"
+    elsif dia == 7
+      dia = "07"
+    elsif dia == 8
+      dia = "08"
+    elsif dia == 9
+      dia = "09"
+    end
+
+    mes = Time.now.month
+    if mes == 1
+      mes = "ENERO"
+    elsif mes == 2
+      mes = "FEBRERO"
+    elsif mes == 3
+      mes = "MARZO"
+    elsif mes == 4
+      mes = "ABRIL"
+    elsif mes == 5
+      mes = "MAYO"
+    elsif mes == 6
+      mes = "JUNIO"
+    elsif mes == 7
+      mes = "JULIO"
+    elsif mes == 8
+      mes = "AGOSTO"
+    elsif mes == 9
+      mes = "SEPTIEMBRE"
+    elsif mes == 10
+      mes = "OCTUBRE"
+    elsif mes == 11
+      mes = "NOVIEMBRE"
+    elsif mes == 12
+      mes = "DICIEMBRE"
+    end
+
+    anio = Time.now.year
+
+    fecha = dia.to_s + " DE " + mes.to_s + " DE " + anio.to_s
+  end
+
 end
