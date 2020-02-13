@@ -7,7 +7,8 @@
         <% if policy(@constancia_documentos).firmar? %>
           <th>Seleccionar</th>
         <% end %>
-        <th>Fecha</th>
+        <th>No. Oficio</th>
+        <th>Fecha de captura</th>
         <th>Nombre</th>
         <th>Boleta</th>
         <th>Unidad academica</th>
@@ -28,6 +29,7 @@
           <% if policy(@constancia_documentos).firmar? %>
             <td><%= check_box_tag "constancia_documento_ids[]", constancia_documento.id %></td>
           <% end %>
+          <td><%= constancia_documento.numero_oficio %></td>
           <td><%= constancia_documento.fecha %></td>
           <td><%= constancia_documento.nombre_completo %></td>
           <td><%= constancia_documento.boleta %></td>
