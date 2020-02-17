@@ -74,7 +74,7 @@
 </p>
 <% if @constancia_documento.firma_direccion.nil? %>
 <p><strong>Constancia emitida:</strong>
-Constancia sin validez
+En proceso
 </p>
 <% else %>
 <p>
@@ -90,8 +90,8 @@ Válida
 </p>
 <% else %>
 <p>
-  <strong>Firma electrónica:</strong>
-  <%= @constancia_documento.firma_direccion %>
+  <strong>Firma electrónica:</strong><br>
+  <%= @constancia_documento.firma_direccion.scan(/.{1}/).join("\n") %>
 </p>
 
 <p>
@@ -101,5 +101,7 @@ Válida
 
 <% end %>
 
+<% if user_signed_in? %>
 <%= link_to 'Editar', edit_constancia_documento_path(@constancia_documento) %> |
 <%= link_to 'Regresar', constancia_documentos_path %>
+<% end %>

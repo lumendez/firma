@@ -1,5 +1,5 @@
 class ConstanciaDocumentosController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :imprimir]
   before_action :set_constancia_documento, only: [:show, :edit, :update, :destroy]
 
   # GET /constancia_documentos
@@ -17,6 +17,10 @@ class ConstanciaDocumentosController < ApplicationController
       @filterrific = initialize_filterrific(
         ConstanciaDocumento.order('created_at DESC'),
         params[:filterrific],
+        select_options: {
+          unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+        },
+        available_filters: [:unidad_academica],
         sanitize_params: true,
       ) || return
     end
@@ -118,6 +122,10 @@ class ConstanciaDocumentosController < ApplicationController
     end
   end
 
+  def consultar_datos
+    @respuesta = ConstanciaDocumento.consultar_ws_dae(params[:boleta])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_constancia_documento
@@ -127,7 +135,7 @@ class ConstanciaDocumentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def constancia_documento_params
-      params.require(:constancia_documento).permit(:folio, :numero_relacion,
+      params.require(:constancia_documento).permit(:numero_relacion,
         :numero_oficio, :numero_registro, :codigo_prestatario, :clave_programa,
         :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
         :periodo, :prestatario, :constancia_emitida, :apellido_paterno,

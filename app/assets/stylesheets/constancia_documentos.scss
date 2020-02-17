@@ -2,10 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .fondo-oficios {
-  background-image: url('fondo_oficio_constancia4.jpg');
-  background-size: cover;
+  background-image: url('Logo_IPN_1136X1600_gris.png');
+  background-size: 434px 550px;
   background-repeat: no-repeat;
-  height: 1210px;
+  background-attachment: fixed;
+  background-position: 50% 70%;
+}
+
+.sello-sep {
+  background-image: url('sep.png');
+  background-size: 140px 190px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .fondo-oficios p {

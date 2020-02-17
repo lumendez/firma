@@ -14,6 +14,8 @@ captura = Role.create({nombre: "Captura", descripcion: "Captura de constancias"}
 usuario1 = User.create({nombre: "Luis Alberto", apellido_paterno: "Mendez", apellido_materno: "Cruz", email: "lumendez@ipn.mx",
 password: "123456", password_confirmation: "123456", role_id: administrador.id})
 
+=begin
+
 usuario2 = User.create({nombre: "Juan", apellido_paterno: "Valdés", apellido_materno: "Rodríguez", email: "jvaldesr@ipn.mx",
 password: "123456", password_confirmation: "123456", role_id: direccion.id})
 
@@ -69,3 +71,5 @@ const10 = ConstanciaDocumento.create({folio: "188592", numero_relacion: "27",num
 numero_registro: "18053/0965", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "SANDRA CAROLINA",
 boleta: "2014530342", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
 prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "GOMEZ", apellido_materno: "LOPEZ", user_id: "3"})
+
+=end

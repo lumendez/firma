@@ -13,8 +13,8 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require jquery
 //= require rails-ujs
+//= require jquery
 //= require filterrific/filterrific-jquery
 //= require activestorage
 //= require turbolinks

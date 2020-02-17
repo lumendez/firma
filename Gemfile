@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+#gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -63,6 +63,10 @@ gem 'rqrcode_png'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'passenger'
+# Para el consumo del webservice de la DAE/RENAPO
+gem 'rest-client'
+# Para la conexion a la base de datos
+gem "mysql2"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
