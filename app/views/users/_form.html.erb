@@ -11,8 +11,6 @@
     </div>
   <% end %>
 
- 
-  <form>
     <div class="form-row">
         <div class="form-group col-md-4">
           <%= form.label :nombre %>
@@ -38,7 +36,7 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-4"> 
+      <div class="form-group col-md-4">
         <%= form.label :password %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> caracteres minimos)</em>
@@ -47,14 +45,11 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-4"> 
+      <div class="form-group col-md-4">
         <%= form.label :password_confirmation %><br />
         <%= form.password_field :password_confirmation, autocomplete: "new-password", class:"form-control " %>
       </div>
     </div>
-  </form>
-  <div class="form-group">
-  </div>
 
   <div class="actions">
     <%= form.submit "Guardar", class: 'btn btn-primary' %>

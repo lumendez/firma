@@ -4,15 +4,15 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def new?
-    user.administrador? or user.departamento? or user.captura?
+    user.administrador? or user.departamento? or user.captura? or user.revisor?
   end
 
   def create?
-    user.administrador? or user.departamento? or user.captura?
+    user.administrador? or user.departamento? or user.captura? or user.revisor?
   end
 
   def show?
-    user.administrador? or user.departamento? or user.captura?
+    user.administrador? or user.departamento? or user.captura? or user.revisor?
   end
 
   def datos_captura?
@@ -33,5 +33,9 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
 
   def eliminar?
     user.administrador? or user.departamento?
+  end
+
+  def opciones?
+    user.administrador? or user.departamento? or user.captura?
   end
 end

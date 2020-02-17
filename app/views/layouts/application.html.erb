@@ -89,7 +89,8 @@
               <%= render 'layouts/menu_direccion' %>
             <% elsif user_signed_in? && current_user.role.nombre == 'Departamento' %>
               <%= render 'layouts/menu_departamento' %>
-            <% elsif user_signed_in? && current_user.role.nombre == 'Captura' %>
+            <% elsif user_signed_in? && current_user.role.nombre == 'Captura' or
+             user_signed_in? && current_user.role.nombre == 'Revisor' %>
               <%= render 'layouts/menu_captura' %>
             <% end %>
           </ul>

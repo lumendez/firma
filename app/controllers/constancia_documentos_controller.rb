@@ -9,13 +9,13 @@ class ConstanciaDocumentosController < ApplicationController
   def index
     if current_user.role.nombre == "Dirección"
       @filterrific = initialize_filterrific(
-        ConstanciaDocumento.where(firma_direccion: nil).order('created_at DESC'),
+        ConstanciaDocumento.where(firma_direccion: nil).order(:numero_oficio),
         params[:filterrific],
         sanitize_params: true,
       ) || return
     else
       @filterrific = initialize_filterrific(
-        ConstanciaDocumento.order('created_at DESC'),
+        ConstanciaDocumento.order('numero_oficio DESC'),
         params[:filterrific],
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
@@ -51,10 +51,12 @@ class ConstanciaDocumentosController < ApplicationController
   # GET /constancia_documentos/new
   def new
     @constancia_documento = current_user.constancia_documentos.build
+    authorize @constancia_documento
   end
 
   # GET /constancia_documentos/1/edit
   def edit
+    authorize @constancia_documento
   end
 
   # POST /constancia_documentos
@@ -89,6 +91,7 @@ class ConstanciaDocumentosController < ApplicationController
         format.json { render json: @constancia_documento.errors, status: :unprocessable_entity }
       end
     end
+    authorize @constancia_documento
   end
 
   # DELETE /constancia_documentos/1
