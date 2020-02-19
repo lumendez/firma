@@ -9,7 +9,7 @@ class ConstanciaDocumentosController < ApplicationController
   def index
     if current_user.role.nombre == "Dirección"
       @filterrific = initialize_filterrific(
-        ConstanciaDocumento.where(firma_direccion: nil).order(:numero_oficio),
+        ConstanciaDocumento.where(firma_direccion: nil).order('numero_oficio DESC'),
         params[:filterrific],
         sanitize_params: true,
       ) || return
@@ -20,7 +20,6 @@ class ConstanciaDocumentosController < ApplicationController
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
         },
-        available_filters: [:unidad_academica],
         sanitize_params: true,
       ) || return
     end

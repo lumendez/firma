@@ -24,7 +24,7 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def update?
-    user.administrador? or user.direccion? or user.departamento? or user.captura?
+    user.administrador? or user.direccion? or user.departamento? or user.captura? or user.revisor?
   end
 
   def firmar?
