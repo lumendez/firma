@@ -36,6 +36,6 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def opciones?
-    user.administrador? or user.departamento? or user.captura?
+    user.administrador? or user.departamento? or user.captura? or user.revisor?
   end
 end
