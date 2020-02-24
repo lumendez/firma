@@ -18,15 +18,24 @@
         class: 'filterrific-periodically-observed form-control col-md-7'
       ) %>
     </div>
-    <!--<div class="col-md-4">
-      <%#= f.label :search_query, 'Escuela' %>
-      <%#= f.select(
+    <div class="col-md-4">
+      <%= f.label :search_query, 'Escuela' %>
+      <%= f.select(
         :unidad_academica,
         @filterrific.select_options[:unidad_academica],
-        { include_blank: '- Cualquiera -' },
-        class: 'form-control col-md-7'
+        { include_blank: '- Todas -' },
+        class: 'form-control col-md-8'
       ) %>
-    </div>-->
+    </div>
+    <div class="col-md-4">
+      <%= f.label :search_query, 'Número de relación' %>
+      <%= f.select(
+        :numero_relacion,
+        @filterrific.select_options[:numero_relacion],
+        { include_blank: '- Todas -' },
+        class: 'form-control col-md-4'
+      ) %>
+    </div>
   </div>
   <br>
   <div class="row">

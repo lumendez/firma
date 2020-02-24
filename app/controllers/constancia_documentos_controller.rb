@@ -19,6 +19,7 @@ class ConstanciaDocumentosController < ApplicationController
         params[:filterrific],
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+          numero_relacion: ConstanciaDocumento.options_for_numero_relacion
         },
         sanitize_params: true,
       ) || return
@@ -81,6 +82,7 @@ class ConstanciaDocumentosController < ApplicationController
   # PATCH/PUT /constancia_documentos/1
   # PATCH/PUT /constancia_documentos/1.json
   def update
+    @constancia_documento.firma_direccion = nil
     respond_to do |format|
       if @constancia_documento.update(constancia_documento_params)
         format.html { redirect_to @constancia_documento, notice: 'La constancia fue actualizada correctamente.' }
