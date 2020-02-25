@@ -42,6 +42,76 @@ class ConstanciaDocumentosController < ApplicationController
     redirect_to(reset_filterrific_url(format: :html)) && return
   end
 
+    def get_info_alumno
+    require 'net/http'
+    require 'json'
+    require 'uri'
+    @boleta = params[:q]
+
+    uri = URI.parse("https://dae.ipn.mx/ws_deyss/inscritosjson?boleta="+@boleta)
+    response = Net::HTTP.get_response(uri)
+    if response.code == "200"
+       result = JSON.parse(response.body)
+    end
+    render json: result 
+  end
+
+  def get_info_curp
+    require 'net/http'
+    require 'uri'
+    require 'openssl'
+    require 'json'
+
+    uri = URI.parse("https://api.cenac.ipn.mx/gw/token")
+    request = Net::HTTP::Post.new(uri)
+    request["Authorization"] = "Basic bDR2cGFfa0Vka3hSX0NiMzRJMERUd2gyeHhvYTptZzFnaXUzV0xOU290RjBZQ1F6ZnF0ZnNkNXNh"
+    request.set_form_data(
+      "grant_type" => "password",
+      "password" => "5HHh8PVfX7VencqA",
+      "username" => "s_dess",
+
+    )
+    req_options = {
+      use_ssl: uri.scheme == "https",
+      verify_mode: OpenSSL::SSL::VERIFY_NONE,
+    }
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+    
+    hash_response = JSON.parse(response.body)
+    @token_ws = hash_response['access_token']
+    puts @token_ws
+
+
+    uri = URI.parse("https://api.cenac.ipn.mx/gw/renapo/1.0.0/curp/consultar")
+    request = Net::HTTP::Post.new(uri)
+    request.content_type = "application/json"
+    request["Accept"] = "application/json"
+    request["Authorization"] = "Bearer "+@token_ws
+    request.body = JSON.dump({
+      "data" => {
+        "curp" => params[:q]
+      }
+    })
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+      verify_mode: OpenSSL::SSL::VERIFY_NONE,
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+
+    # response.code
+    # response.body
+    hash_response = JSON.parse(response.body)
+    render json: hash_response
+
+    # response.code
+    # response.body
+  end
 
   # GET /constancia_documentos/1
   # GET /constancia_documentos/1.json
