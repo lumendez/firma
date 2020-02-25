@@ -11,6 +11,16 @@
     </div>
   <% end %>
     <div class="form-row">
+        <div class="form-group col-md-4">
+         Boleta:</br><input type="text" id="fboleta" name="fboleta"><br>
+         <button type="button" id="getBoleta" name="getBoleta">Buscar</button>
+        </div>
+        <div class="form-group col-md-4">
+         CURP:</br><input type="text" id="fcurp" name="fcurp"><br>
+         <button type="button" id="getCurp" name="getCurp">Buscar Curp</button>
+        </div>
+    </div>
+    <div class="form-row">
       <div class="form-group col-md-4">
         <%= form.label :boleta %>
         <%= form.text_field :boleta, class:"form-control col-md-8", autofocus: true %>
@@ -104,4 +114,5 @@
          <%= form.submit "Guardar", class: 'btn btn-primary' %>
         </div>
     </div>
+    <%= javascript_include_tag('ws_apis') %>
 <% end %>

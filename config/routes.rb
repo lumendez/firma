@@ -23,5 +23,10 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
+  
+  get 'get_info_alumno/:q' => 'constancia_documentos#get_info_alumno'
+
+  get 'get_info_curp/:q' => 'constancia_documentos#get_info_curp'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
