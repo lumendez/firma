@@ -11,6 +11,10 @@ class ConstanciaDocumentosController < ApplicationController
       @filterrific = initialize_filterrific(
         ConstanciaDocumento.where(firma_direccion: nil).order('numero_oficio DESC'),
         params[:filterrific],
+        select_options: {
+          unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+          numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+        },
         sanitize_params: true,
       ) || return
     else
@@ -42,7 +46,35 @@ class ConstanciaDocumentosController < ApplicationController
     redirect_to(reset_filterrific_url(format: :html)) && return
   end
 
-    def get_info_alumno
+  def validar_constancias
+    @filterrific = initialize_filterrific(
+      ConstanciaDocumento.where(constancia_emitida: false).order('numero_oficio DESC'),
+      params[:filterrific],
+      select_options: {
+        unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+        numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+      },
+      sanitize_params: true,
+    ) || return
+
+    @constancia_documentos = @filterrific.find.page(params[:pagina])
+
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+  # Recover from invalid param sets, e.g., when a filter refers to the
+  # database id of a record that doesn’t exist any more.
+  # In this case we reset filterrific and discard all filter params.
+  rescue ActiveRecord::RecordNotFound => e
+    # There is an issue with the persisted param_set. Reset it.
+    puts "Se reasignaron parámetros de filterrific: #{e.message}"
+    redirect_to(reset_filterrific_url(format: :html)) && return
+  end
+
+  def get_info_alumno
     require 'net/http'
     require 'json'
     require 'uri'
@@ -53,7 +85,7 @@ class ConstanciaDocumentosController < ApplicationController
     if response.code == "200"
        result = JSON.parse(response.body)
     end
-    render json: result 
+    render json: result
   end
 
   def get_info_curp
@@ -78,7 +110,7 @@ class ConstanciaDocumentosController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-    
+
     hash_response = JSON.parse(response.body)
     @token_ws = hash_response['access_token']
     puts @token_ws
@@ -177,6 +209,11 @@ class ConstanciaDocumentosController < ApplicationController
 
   def firmar
     @constancia_documentos = ConstanciaDocumento.formar_cadena(params[:constancia_documento_ids])
+  end
+
+  def validar
+    @constancia_documentos = ConstanciaDocumento.validar_constancias(params[:constancia_documento_ids])
+    redirect_to validar_constancias_constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido validada(s) correctamente.'
   end
 
   def actualizar_firma

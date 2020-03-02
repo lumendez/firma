@@ -67,14 +67,14 @@
   <strong>Prestatario:</strong>
   <%= @constancia_documento.prestatario %>
 </p>
-<% if @constancia_documento.firma_direccion.nil? %>
-<p><strong>Constancia emitida:</strong>
-En proceso
+<% if @constancia_documento.constancia_emitida == false %>
+<p><strong>Constancia:</strong>
+En espera de validación por el Departamento de Control y Trámite de Servicio Social
 </p>
 <% else %>
 <p>
-  <strong>Constancia emitida:</strong>
-Válida
+  <strong>Constancia:</strong>
+Validada por el Departamento de Control y Trámite de Servicio Social
 </p>
 <% end %>
 

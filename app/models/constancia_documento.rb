@@ -98,6 +98,13 @@ class ConstanciaDocumento < ApplicationRecord
     end
   end
 
+  def self.validar_constancias(constancia_documento_ids)
+    constancia_documentos = ConstanciaDocumento.find(constancia_documento_ids)
+    constancia_documentos.each do |constancia_documento|
+      constancia_documento.update_attributes(constancia_emitida: true)
+    end
+  end
+
   scope :unidad_academica, lambda { |unidad_academica|
     where(unidad_academica: [*unidad_academica])
   }

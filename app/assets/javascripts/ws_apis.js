@@ -7,7 +7,7 @@
           dataType: "json",
           //data: "boleta=2019500120",
           success: function (data){
-            //var json = parseJSON(data);  
+            //var json = parseJSON(data);
             //var response = JSON.stringify(data);
             //var json = parseJSON(data);
             console.log(data);
@@ -35,7 +35,7 @@
               document.getElementById("constancia_documento_apellido_paterno").value = "";
               document.getElementById("constancia_documento_apellido_materno").value = "";
         var boleta = document.getElementById("fboleta").value;
-        
+
         //alert(boleta);
         $.ajax({
           type: "GET",
@@ -44,7 +44,7 @@
           dataType: "json",
           //data: "boleta=2019500120",
           success: function (data){
-            //var json = parseJSON(data);  
+            //var json = parseJSON(data);
             //var response = JSON.stringify(data);
             //var json = parseJSON(data);
             console.log(data);
@@ -60,7 +60,7 @@
             else
             {
               alert("Boleta no Encontrada");
-            }   
+            }
             //alert(json.html);
           },
           error: function (data){ console.log(data) }

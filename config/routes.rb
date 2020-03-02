@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :constancia_documentos, param: :uuid do
     collection do
       get 'firmar'
+      get 'validar'
+      get 'validar_constancias'
       get 'imprimir/:uuid', to: 'constancia_documentos#imprimir',  as: 'imprimir'
       post 'actualizar_firma'
     end
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  
+
   get 'get_info_alumno/:q' => 'constancia_documentos#get_info_alumno'
 
   get 'get_info_curp/:q' => 'constancia_documentos#get_info_curp'
