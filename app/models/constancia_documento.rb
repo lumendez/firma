@@ -1,10 +1,9 @@
 class ConstanciaDocumento < ApplicationRecord
   uuidable
 
-  validates :numero_relacion,
-    :numero_oficio, :numero_registro, :codigo_prestatario,
-    :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
-    :prestatario, :user_id, presence: true
+  validates :numero_relacion, :numero_oficio, :numero_registro, :codigo_prestatario,
+  :fecha, :nombre, :boleta, :unidad_academica, :programa_academico, :prestatario,
+  :user_id, presence: true
 
   filterrific(
     available_filters: [
@@ -17,6 +16,14 @@ class ConstanciaDocumento < ApplicationRecord
   paginates_per 10
 
   belongs_to :user
+
+  # before_save sólo funciona después de que la validación haya pasado
+  # correctamente
+  before_save :asignar_emision
+
+  def asignar_emision
+      self.constancia_emitida = false
+  end
 
   scope :search_query, lambda { |query|
 
