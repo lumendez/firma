@@ -28,7 +28,7 @@
 
       <div class="form-group col-md-4">
         <strong><%= form.label :unidad_academica %></strong>
-        <%= form.text_field :unidad_academica, class:"form-control" %>
+        <%= form.select :unidad_academica, ConstanciaDocumento.options_for_unidad_academica, { include_blank: '- Todas -' }, class:"form-control" %>
       </div>
       <div class="form-group col-md-4">
         <strong><%= form.label :programa_academico %></strong>
