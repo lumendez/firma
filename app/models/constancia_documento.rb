@@ -22,7 +22,7 @@ class ConstanciaDocumento < ApplicationRecord
   before_save :asignar_emision
 
   def asignar_emision
-      self.constancia_emitida = false
+      self.constancia_emitida = false if self.constancia_emitida.nil?
   end
 
   scope :search_query, lambda { |query|
