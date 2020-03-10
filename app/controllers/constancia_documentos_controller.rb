@@ -226,8 +226,20 @@ class ConstanciaDocumentosController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "file_name",   # Excluding ".pdf" extension.
+        render pdf: "Constancia_" + @constancia_documento.boleta,   # Excluding ".pdf" extension.
         template: "constancia_documentos/imprimir.html.erb",
+        layout: "imprimir.html.erb"
+      end
+    end
+  end
+
+  def imprimir_relacion
+    @constancia_documentos = ConstanciaDocumento.generar_lista(params[:relacion], params[:escuela], params[:anio])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Relacion",
+        template: "constancia_documentos/imprimir_relacion.html.erb",
         layout: "imprimir.html.erb"
       end
     end
@@ -235,6 +247,32 @@ class ConstanciaDocumentosController < ApplicationController
 
   def consultar_datos
     @respuesta = ConstanciaDocumento.consultar_ws_dae(params[:boleta])
+  end
+
+  def buscar_relacion
+  end
+
+  def relacion
+    if params[:relacion] && params[:escuela] && params[:anio]
+      @constancia_documentos = obtener_relacion
+      @relacion = params[:relacion]
+      @unidad_academica = params[:escuela]
+      @anio = params[:anio]
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Relacion",
+          template: "constancia_documentos/imprimir_relacion.html.erb",
+          layout: "imprimir.html.erb"
+        end
+      end
+    else
+      redirect_to buscar_relacion_constancia_documentos_path, notice: 'Debe de introducir una CURP válida.'
+    end
+  end
+
+  def obtener_relacion
+    @constancia_documentos = ConstanciaDocumento.generar_lista(params[:relacion], params[:escuela], params[:anio])
   end
 
   private

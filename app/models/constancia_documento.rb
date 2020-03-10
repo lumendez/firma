@@ -111,6 +111,14 @@ class ConstanciaDocumento < ApplicationRecord
     end
   end
 
+  def self.generar_lista(relacion, escuela, anio)
+    constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND cast(strftime('%Y', created_at) as int) = ?", relacion, escuela, anio)
+  end
+
+  def nombre_completo
+    "#{nombre} #{apellido_paterno} #{apellido_materno}"
+  end
+
   scope :unidad_academica, lambda { |unidad_academica|
     where(unidad_academica: [*unidad_academica])
   }
@@ -124,7 +132,7 @@ class ConstanciaDocumento < ApplicationRecord
       ['CECyT 1 "GVV"', 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 1 "GONZALO VAZQUEZ VELA"'],
       ['CECyT 2 "MBP"', 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 2 "MIGUEL BERNARD PERALES"'],
       ['CECyT 3 "ERR"', 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 3 "ESTANISLAO RAMIREZ RUIZ"'],
-      ['CECyT 4 " LCR"', 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 4 "LAZARO CARDENAS DEL RIO"'],
+      ['CECyT 4 "LCR"', 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 4 "LAZARO CARDENAS DEL RIO"'],
       ['CECyT 5 "BJG"',	'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 5 "BENITO JUAREZ GARCIA"'],
       ['CECyT 6 "MOM"',	'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 6 "MIGUEL OTHON DE MENDIZABAL"'],
       ['CECyT 7 "C"',	'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 7 "CUAUHTEMOC"'],

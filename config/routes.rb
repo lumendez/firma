@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       get 'validar_constancias'
       get 'imprimir/:uuid', to: 'constancia_documentos#imprimir',  as: 'imprimir'
       post 'actualizar_firma'
+      get 'buscar_relacion'
+      get 'relacion'
+      get 'imprimir_relacion', to: 'constancia_documentos#imprimir_relacion', as: 'imprimir_relacion'
     end
   end
   devise_scope :user do

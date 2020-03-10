@@ -1,0 +1,31 @@
+<h1>Relación generada</h1>
+<p><strong>Unidad Académica:</strong> <%= @unidad_academica %></p>
+<p><strong>Relación:</strong> <%= @relacion %></p>
+<p><strong>Fecha:</strong> <%= ConstanciaDocumento.fecha_alfanumerica %></p>
+<table class="table tabla-constancias">
+  <thead>
+    <tr>
+      <th>Boleta</th>
+      <th>Oficio</th>
+      <th>Nombre</th>
+      <th>Registro</th>
+      <th>UUID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @constancia_documentos.each do |constancia_documento| %>
+    <tr>
+      <td><%= constancia_documento.boleta %></td>
+      <td><%= constancia_documento.numero_oficio %></td>
+      <td><%= constancia_documento.nombre_completo %></td>
+      <td><%= constancia_documento.numero_registro %></td>
+      <td><a href="https://serviciosocialconstancias.ipn.mx/<%= constancia_documento.uuid %>">https://serviciosocialconstancias.ipn.mx/<%= constancia_documento.uuid%></a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Descargar relación", relacion_constancia_documentos_path(format: :pdf),
+  target:"_blank" %>
+</p>
