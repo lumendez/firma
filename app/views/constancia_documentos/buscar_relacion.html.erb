@@ -12,8 +12,8 @@
       <%= text_field_tag :relacion, params[:relacion], class:'form-control inicio', required: true %>
     </div>
     <div class="col-md-4">
-      <%= label_tag 'Unidad academica:' %>
-      <%= text_field_tag :escuela, params[:escuela], class:'form-control inicio' %>
+      <%= label_tag 'Unidad academica:' %> 
+      <%= select :escuela, params[:escuela], ConstanciaDocumento.options_for_unidad_academica, { include_blank: '- Todas -' }, class:"form-control" %>
     </div>
     <div class="col-md-4">
       <%= label_tag 'Año:' %>
