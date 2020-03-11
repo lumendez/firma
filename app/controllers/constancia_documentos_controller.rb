@@ -235,12 +235,16 @@ class ConstanciaDocumentosController < ApplicationController
 
   def imprimir_relacion
     @constancia_documentos = ConstanciaDocumento.generar_lista(params[:relacion], params[:escuela], params[:anio])
+    @relacion = params[:relacion]
+    @unidad_academica = @constancia_documentos.pluck(:unidad_academica).first
+    @anio = params[:anio]
     respond_to do |format|
       format.html
       format.pdf do
         render pdf: "Relacion",
         template: "constancia_documentos/imprimir_relacion.html.erb",
-        layout: "imprimir.html.erb"
+        layout: "imprimir_relacion.html.erb",
+        orientation: "Landscape"
       end
     end
   end
@@ -256,16 +260,8 @@ class ConstanciaDocumentosController < ApplicationController
     if params[:relacion] && params[:escuela] && params[:anio]
       @constancia_documentos = obtener_relacion
       @relacion = params[:relacion]
-      @unidad_academica = params[:escuela]
+      @unidad_academica = @constancia_documentos.pluck(:unidad_academica).first
       @anio = params[:anio]
-      respond_to do |format|
-        format.html
-        format.pdf do
-          render pdf: "Relacion",
-          template: "constancia_documentos/imprimir_relacion.html.erb",
-          layout: "imprimir.html.erb"
-        end
-      end
     else
       redirect_to buscar_relacion_constancia_documentos_path, notice: 'Debe de introducir una CURP válida.'
     end

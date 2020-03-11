@@ -1,7 +1,7 @@
-<p><strong>Unidad Académica:</strong> <%= @unidad_academica %></p>
 <p><strong>Relación:</strong> <%= @relacion %></p>
+<p><strong>Unidad Académica:</strong> <%= @unidad_academica %></p>
 <p><strong>Fecha:</strong> <%= ConstanciaDocumento.fecha_alfanumerica %></p>
-<table class="table tabla-constancias">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Boleta</th>
@@ -23,3 +23,4 @@
     <% end %>
   </tbody>
 </table>
+<p><strong>Total de constancias:</strong> <%= @constancia_documentos.count %></p>

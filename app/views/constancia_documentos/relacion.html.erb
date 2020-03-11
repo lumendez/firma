@@ -1,6 +1,6 @@
 <h1>Relación generada</h1>
-<p><strong>Unidad Académica:</strong> <%= @unidad_academica %></p>
 <p><strong>Relación:</strong> <%= @relacion %></p>
+<p><strong>Unidad Académica:</strong> <%= @unidad_academica %></p>
 <p><strong>Fecha:</strong> <%= ConstanciaDocumento.fecha_alfanumerica %></p>
 <table class="table tabla-constancias">
   <thead>
@@ -26,6 +26,6 @@
 </table>
 
 <p>
-  <%= link_to "Descargar relación", relacion_constancia_documentos_path(format: :pdf),
-  target:"_blank" %>
+  <%= link_to "Descargar relación", imprimir_relacion_constancia_documentos_path(format: :pdf, relacion: @relacion, escuela: @unidad_academica, anio: @anio), target:"_blank" %>
+  <%#= link_to 'Email', samplecardreport_path(format: :pdf, email_search_stuent_id: value1, term: value2,form_class: value3, year: value4), :class => 'btn btn-warning termact_btns' %>
 </p>
