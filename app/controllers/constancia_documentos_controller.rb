@@ -241,7 +241,8 @@ class ConstanciaDocumentosController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Relacion",
+        render pdf: "RELACION_" + @relacion + "_" + @unidad_academica + "_"+ @anio,
+        footer: { right: 'Página [page] de [topage]', font_size: 10, },
         template: "constancia_documentos/imprimir_relacion.html.erb",
         layout: "imprimir_relacion.html.erb",
         orientation: "Landscape"

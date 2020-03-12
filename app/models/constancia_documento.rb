@@ -113,9 +113,9 @@ class ConstanciaDocumento < ApplicationRecord
 
   def self.generar_lista(relacion, escuela, anio)
     # Usar la siguiente expresion para generar la busqueda en SQLite
-    #constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND cast(strftime('%Y', created_at) as int) = ?", relacion, escuela, anio)
+    constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND cast(strftime('%Y', created_at) as int) = ?", relacion, escuela, anio)
     # Usar la siguiente expresion para generar la busqueda en MySQL
-    constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND extract(year from created_at) = ?", relacion, escuela, anio)
+    #constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND extract(year from created_at) = ?", relacion, escuela, anio)
   end
 
   def nombre_completo

@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @constancia_documentos.each do |constancia_documento| %>
-    <tr>
+    <tr style="page-break-inside: avoid !important;">
       <td><%= constancia_documento.boleta %></td>
       <td><%= constancia_documento.numero_oficio %></td>
       <td><%= constancia_documento.nombre_completo %></td>
