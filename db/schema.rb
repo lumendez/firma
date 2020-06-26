@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_06_11_064635) do
 
-  create_table "constancia_documentos", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "constancia_documentos", force: :cascade do |t|
     t.string "folio"
     t.string "numero_relacion"
     t.string "numero_oficio"
@@ -29,28 +29,28 @@ ActiveRecord::Schema.define(version: 2020_06_11_064635) do
     t.boolean "constancia_emitida"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "firma_direccion", limit: 4294967295
-    t.text "firma_departamento", limit: 4294967295
+    t.text "firma_direccion"
+    t.text "firma_departamento"
     t.string "apellido_paterno"
     t.string "apellido_materno"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "uuid"
     t.string "correo"
     t.index ["user_id"], name: "index_constancia_documentos_on_user_id"
   end
 
-  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "roles", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido_paterno"
     t.string "apellido_materno"
-    t.bigint "role_id"
+    t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -70,6 +70,4 @@ ActiveRecord::Schema.define(version: 2020_06_11_064635) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "constancia_documentos", "users"
-  add_foreign_key "users", "roles"
 end
