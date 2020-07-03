@@ -50,7 +50,7 @@
     La Dirección de Egresados y Servicio Social del Instituto Politécnico
     Nacional, con base en las disposiciones contenidas en la Ley Reglamentaria
     del Artículo 5° Constitucional y de su Reglamento, así como del Reglamento de
-    Servicio Social propio del Instituto, hace constar que, según documentos que
+    Servicio Social del Instituto, hace constar que, de acuerdo a los documentos que
     obran en los archivos del Departamento de Control y Trámite de Servicio
     Social, el alumno:</strong><br>
     <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %> <%= @constancia_documento.apellido_materno %><br>
@@ -60,16 +60,23 @@
    <%= @constancia_documento.unidad_academica %><br>
    <strong>pasante del programa académico:</strong><br>
    <%= @constancia_documento.programa_academico %><br>
-   <strong>ha cumplido con su SERVICIO SOCIAL durante el periodo comprendido del:</strong><br>
-   <%= @constancia_documento.periodo %><br>
-   <strong>prestando sus servicios en:</strong><br>
-   <%= @constancia_documento.prestatario %><br>
+   <% if @constancia_documento.programa_academico.present? && @constancia_documento.periodo.present? && @constancia_documento.prestatario.present? %>
+     <strong>ha cumplido con su SERVICIO SOCIAL durante el periodo comprendido del:</strong><br>
+     <%= @constancia_documento.periodo %><br>
+     <strong>prestando sus servicios en:</strong><br>
+     <%= @constancia_documento.prestatario %><br>
   </p>
+   <% else %>
+   <p align="justify" style="font-size:16px">
+     Liberación de servicio social conforme a lo dispuesto por el articulo 73 fracción XVI,
+     Bases 2a y 3a de la Constitución Política de los Estados Unidos Mexicanos,
+     en relacion a las medias instrumentadas por la Secretaria de Salud como
+     medida y control de la epidemia generada por el virus SARS-CoV2 publicado
+     en el decreto de fecha 27 de marzo de 2020 en el Diario Oficial de la Federación.
+  </p>
+  <% end %>
   <p align="center" style="font-size:20px">
     <strong>"LA TÉCNICA AL SERVICIO DE LA PATRIA"</strong>
-  </p>
-  <p align="center" style="font-size:16px">
-    <strong>DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</strong>
   </p>
   <table style="font-size:12px; margin:0 auto;" width="800">
     <tr>
@@ -99,10 +106,12 @@
     </table>
     <p align="center" style="font-size:18px">
       <strong>LIC. RICARDO MARTÍN HERNÁNDEZ RAMÍREZ</strong>
+      <br>
+      <strong><span style="font-size:16px">DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</span></strong>
     </p>
     <p align="left" style="font-size:10px">
       <strong>Validó información: Lic. Zintia Martínez Cabral - Jefa de la División de Servicio Social</strong>
       <br>
-      <strong>Certificó información: M. en C. Luis Alberto Mendez Cruz - Jefe del Departamento de Control y Trámite de Servicio Social</strong>
+      <strong>Responsable de la información: M. en C. Luis Alberto Mendez Cruz - Jefe del Departamento de Control y Trámite de Servicio Social</strong>
     </p>
 </div>

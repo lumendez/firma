@@ -1,8 +1,8 @@
 class ConstanciaDocumento < ApplicationRecord
   uuidable
 
-  validates :numero_relacion, :numero_oficio, :numero_registro, :codigo_prestatario,
-  :fecha, :nombre, :boleta, :unidad_academica, :programa_academico, :prestatario,
+  validates :numero_oficio, :numero_registro,
+  :fecha, :nombre, :boleta, :unidad_academica, :programa_academico,
   :user_id, presence: true
 
   filterrific(
