@@ -1,0 +1,37 @@
+<div id="filterrific_results">
+<h1 class="sub">Constancias capturadas</h1>
+<%= form_tag validar_constancia_documentos_path, method: :get do %>
+  <table class="table tabla-constancias">
+    <thead>
+      <tr>
+        <th>No. Oficio</th>
+        <th>Fecha de captura</th>
+        <th>Nombre</th>
+        <th>Boleta</th>
+        <th>Unidad academica</th>
+        <th>Programa academico</th>
+        <th>Periodo</th>
+        <th>Prestatario</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @constancia_documentos.each do |constancia_documento| %>
+        <tr>
+          <td><%= constancia_documento.numero_oficio %></td>
+          <td><%= constancia_documento.fecha %></td>
+          <td><%= constancia_documento.nombre_completo %></td>
+          <td><%= constancia_documento.boleta %></td>
+          <td><%= constancia_documento.unidad_academica %></td>
+          <td><%= constancia_documento.programa_academico %></td>
+          <td><%= constancia_documento.periodo %></td>
+          <td><%= constancia_documento.prestatario %></td>
+          <td class="alert-success">Firmada</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+  <br>
+   <%= paginate @constancia_documentos, theme: 'twitter-bootstrap-4', param_name: :pagina %>
+  </div>

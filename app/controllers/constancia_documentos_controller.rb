@@ -37,10 +37,10 @@ class ConstanciaDocumentosController < ApplicationController
       format.js
     end
 
-  # Recover from invalid param sets, e.g., when a filter refers to the
-  # database id of a record that doesn’t exist any more.
-  # In this case we reset filterrific and discard all filter params.
-  rescue ActiveRecord::RecordNotFound => e
+    # Recover from invalid param sets, e.g., when a filter refers to the
+    # database id of a record that doesn’t exist any more.
+    # In this case we reset filterrific and discard all filter params.
+    rescue ActiveRecord::RecordNotFound => e
     # There is an issue with the persisted param_set. Reset it.
     puts "Se reasignaron parámetros de filterrific: #{e.message}"
     redirect_to(reset_filterrific_url(format: :html)) && return
@@ -65,10 +65,10 @@ class ConstanciaDocumentosController < ApplicationController
       format.js
     end
 
-  # Recover from invalid param sets, e.g., when a filter refers to the
-  # database id of a record that doesn’t exist any more.
-  # In this case we reset filterrific and discard all filter params.
-  rescue ActiveRecord::RecordNotFound => e
+    # Recover from invalid param sets, e.g., when a filter refers to the
+    # database id of a record that doesn’t exist any more.
+    # In this case we reset filterrific and discard all filter params.
+    rescue ActiveRecord::RecordNotFound => e
     # There is an issue with the persisted param_set. Reset it.
     puts "Se reasignaron parámetros de filterrific: #{e.message}"
     redirect_to(reset_filterrific_url(format: :html)) && return
@@ -270,6 +270,36 @@ class ConstanciaDocumentosController < ApplicationController
 
   def obtener_relacion
     @constancia_documentos = ConstanciaDocumento.generar_lista(params[:relacion], params[:escuela], params[:anio])
+  end
+
+  def constancias_firmadas
+    @filterrific = initialize_filterrific(
+      ConstanciaDocumento.where.not(firma_direccion: nil).order('numero_oficio DESC'),
+      params[:filterrific],
+      select_options: {
+        unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+        numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+      },
+      sanitize_params: true,
+    ) || return
+
+    @constancia_documentos = @filterrific.find.page(params[:pagina])
+
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+    @numero_constancias = ConstanciaDocumento.where.not(firma_direccion: nil).count
+
+    # Recover from invalid param sets, e.g., when a filter refers to the
+    # database id of a record that doesn’t exist any more.
+    # In this case we reset filterrific and discard all filter params.
+    rescue ActiveRecord::RecordNotFound => e
+    # There is an issue with the persisted param_set. Reset it.
+    puts "Se reasignaron parámetros de filterrific: #{e.message}"
+    redirect_to(reset_filterrific_url(format: :html)) && return
   end
 
   private

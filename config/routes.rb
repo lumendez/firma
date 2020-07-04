@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'buscar_relacion'
       get 'relacion'
       get 'imprimir_relacion', to: 'constancia_documentos#imprimir_relacion', as: 'imprimir_relacion'
+      get 'constancias_firmadas'
     end
   end
   devise_scope :user do
