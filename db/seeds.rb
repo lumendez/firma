@@ -1,75 +1,30 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
 
-administrador = Role.create({nombre: "Administrador", descripcion: "Administrador del sistema"})
-direccion = Role.create({nombre: "Dirección", descripcion: "Director de Egresados y Servicio Social"})
-departamento = Role.create({nombre: "Departamento", descripcion: "Departamento de Control y Trámite de Servicio Social"})
-captura = Role.create({nombre: "Captura", descripcion: "Captura de constancias"})
+csv_text = File.read(Rails.root.join('lib','seeds','datos600.csv'))
+csv = CSV.parse(csv_text, headers: true)
 
-usuario1 = User.create({nombre: "Luis Alberto", apellido_paterno: "Mendez", apellido_materno: "Cruz", email: "lumendez@ipn.mx",
-password: "123456", password_confirmation: "123456", role_id: administrador.id})
+csv.each do |row|
+  t = ConstanciaDocumento.new
 
-=begin
+  t.numero_registro = row['REGISTRO']
+  t.id = row['ID']
+  t.numero_relacion = row['RELACION']
+  t.numero_oficio = row['OFICIO']
+  t.codigo_prestatario = row['CLAVE']
+  t.clave_programa = row['PROGRAMA']
+  t.fecha = row['FECHA']
+  t.nombre = row['NOMBRE']
+  t.apellido_paterno = row['PATERNO']
+  t.apellido_materno = row['MATERNO']
+  t.boleta = row['BOLETA']
+  t.unidad_academica = row['UNIDAD ACADEMICA']
+  t.programa_academico = row['CARRERA']
+  t.periodo = row['FECHA TEXTO']
+  t.prestatario = row['PRESTATARIO']
+  t.constancia_emitida = row['EMITIDA']
+  t.user_id = row['USERID']
+  t.created_at = Time.now
+  t.updated_at = Time.now
 
-usuario2 = User.create({nombre: "Juan", apellido_paterno: "Valdés", apellido_materno: "Rodríguez", email: "jvaldesr@ipn.mx",
-password: "123456", password_confirmation: "123456", role_id: direccion.id})
-
-usuario3 = User.create({nombre: "Maria del Pilar", apellido_paterno: "López", apellido_materno: "Montealvo", email: "mdelpilar@ipn.mx",
-password: "123456", password_confirmation: "123456", role_id: captura.id})
-
-const1 = ConstanciaDocumento.create({folio: "188583", numero_relacion: "27",numero_oficio: "DESS/DSS/14617/19",
-numero_registro: "18053/0263", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "HECTOR JOSE",
-boleta: "2014530255", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "CERVANTES", apellido_materno: "HERNANDEZ", user_id: "3"})
-
-const2 = ConstanciaDocumento.create({folio: "188584", numero_relacion: "27",numero_oficio: "DESS/DSS/14618/19",
-numero_registro: "18053/0234", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "YESSENIA",
-boleta: "2014530844", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "AGUILAR", apellido_materno: "GUERRERO", user_id: "3"})
-
-const3 = ConstanciaDocumento.create({folio: "188585", numero_relacion: "27",numero_oficio: "DESS/DSS/14619/19",
-numero_registro: "18053/0424", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "ITALIA BERENICE",
-boleta: "2014530847", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "AGUILAR", apellido_materno: "VAZQUEZ", user_id: "3"})
-
-const4 = ConstanciaDocumento.create({folio: "188586", numero_relacion: "27",numero_oficio: "DESS/DSS/14620/19",
-numero_registro: "18053/0255", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "ITZEL",
-boleta: "2014530867", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "AVILES", apellido_materno: "MARTINEZ", user_id: "3"})
-
-const5 = ConstanciaDocumento.create({folio: "188587", numero_relacion: "27",numero_oficio: "DESS/DSS/14621/19",
-numero_registro: "18053/0249", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "GABRIELA",
-boleta: "2014530255", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "DE LA CRUZ", apellido_materno: "CORTES", user_id: "3"})
-
-const6 = ConstanciaDocumento.create({folio: "188588", numero_relacion: "27",numero_oficio: "DESS/DSS/14622/19",
-numero_registro: "18053/0453", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "NAYELI",
-boleta: "2014530765", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "AVILA", apellido_materno: "DIAZ", user_id: "3"})
-
-const7 = ConstanciaDocumento.create({folio: "188589", numero_relacion: "27",numero_oficio: "DESS/DSS/14623/19",
-numero_registro: "18053/0232", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "MONSERRAT",
-boleta: "2014530254", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "ESQUIVEL", apellido_materno: "MORALES", user_id: "3"})
-
-const8 = ConstanciaDocumento.create({folio: "188590", numero_relacion: "27",numero_oficio: "DESS/DSS/14624/19",
-numero_registro: "18053/0263", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "ELIZABETH",
-boleta: "2014530255", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "FIERROS", apellido_materno: "CRUZ", user_id: "3"})
-
-const9 = ConstanciaDocumento.create({folio: "188591", numero_relacion: "27",numero_oficio: "DESS/DSS/14625/19",
-numero_registro: "18053/0567", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "HECTOR JOSE",
-boleta: "2014530765", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "CERVANTES", apellido_materno: "HERNANDEZ", user_id: "3"})
-
-const10 = ConstanciaDocumento.create({folio: "188592", numero_relacion: "27",numero_oficio: "DESS/DSS/14626/19",
-numero_registro: "18053/0965", codigo_prestatario: "100101700", clave_programa: "1", fecha: "17 DE SEPTIEMBRE DE 2019", nombre: "SANDRA CAROLINA",
-boleta: "2014530342", unidad_academica: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", programa_academico: "LICENCIADO EN ENFERMERIA", periodo: "01 DE AGOSTO DE 2018 AL 31 DE JULIO DE 2019",
-prestatario: "ESCUELA SUPERIOR DE ENFERMERIA Y OBTETRICIA", apellido_paterno: "GOMEZ", apellido_materno: "LOPEZ", user_id: "3"})
-
-=end
+  t.save
+end
