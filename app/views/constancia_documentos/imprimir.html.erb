@@ -34,8 +34,10 @@
         <span style="font-size:12px"><strong>Asunto:</strong> CONSTANCIA DE SERVICIO SOCIAL
         <br><strong>Oficio:</strong> <%= @constancia_documento.numero_oficio %>
         <br><strong>Registro:</strong> <%= @constancia_documento.numero_registro %>
+        <% if @constancia_documento.codigo_prestatario.present? && @constancia_documento.clave_programa.present? %>
         <br><strong>Código de prestatario:</strong> <%= @constancia_documento.codigo_prestatario %>
         <br><strong>Clave del programa:</strong> <%= @constancia_documento.clave_programa %>
+        <% end %>
         <br><strong>Cd. de México a:</strong> <%= @constancia_documento.fecha %></span>
       </td>
     </tr>
@@ -46,6 +48,7 @@
    INSURGENTES SUR No. 2387<br>
    CIUDAD DE MÉXICO, C.P. 01000<br></strong>
   </p>
+  <% if @constancia_documento.programa_academico.present? && @constancia_documento.periodo.present? && @constancia_documento.prestatario.present? %>
   <p align="justify" style="font-size:16px"><strong>
     La Dirección de Egresados y Servicio Social del Instituto Politécnico
     Nacional, con base en las disposiciones contenidas en la Ley Reglamentaria
@@ -55,24 +58,42 @@
     Social, el alumno:</strong><br>
     <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %> <%= @constancia_documento.apellido_materno %><br>
     <strong>boleta:</strong> <br>
-   <%= @constancia_documento.boleta %><br>
-   <strong>de la Unidad Académica:</strong><br>
-   <%= @constancia_documento.unidad_academica %><br>
-   <strong>pasante del programa académico:</strong><br>
-   <%= @constancia_documento.programa_academico %><br>
-   <% if @constancia_documento.programa_academico.present? && @constancia_documento.periodo.present? && @constancia_documento.prestatario.present? %>
-     <strong>ha cumplido con su SERVICIO SOCIAL durante el periodo comprendido del:</strong><br>
-     <%= @constancia_documento.periodo %><br>
-     <strong>prestando sus servicios en:</strong><br>
-     <%= @constancia_documento.prestatario %><br>
+    <%= @constancia_documento.boleta %><br>
+    <strong>de la Unidad Académica:</strong><br>
+    <%= @constancia_documento.unidad_academica %><br>
+    <strong>pasante del programa académico:</strong><br>
+    <%= @constancia_documento.programa_academico %><br>
+    <strong>ha cumplido con su SERVICIO SOCIAL durante el periodo comprendido del:</strong><br>
+    <%= @constancia_documento.periodo %><br>
+    <strong>prestando sus servicios en:</strong><br>
+    <%= @constancia_documento.prestatario %><br>
   </p>
    <% else %>
+   <p align="justify" style="font-size:16px"><strong>
+     La Dirección de Egresados y Servicio Social del Instituto Politécnico Nacional
+     con fundamento en lo dispuesto por los artículos 52 y 53 de la Ley Reglamentaria
+     del Artículo 5 Constitucional relativo al ejercicio de profesiones en la Ciudad
+     de México; 85, 90 y 93 del Reglamento de la Ley Reglamentaria del Artículo 5
+     Constitucional relativo al ejercicio de profesiones en la Ciudad de México; 4,
+     fracción VII de la Ley Orgánica; 42, fracción X, XIV del Reglamento Orgánico;
+     100 del Reglamento Interno, y 3 del Reglamento de Servicio Social, los últimos
+     cuatro ordenamientos del Instituto Politécnico Nacional, hace constar que, de
+     acuerdo a los documentos que obran en los archivos del Departamento de Control y
+     Trámite de Servicio Social Social el alumno:</strong><br>
+     <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %> <%= @constancia_documento.apellido_materno %><br>
+     <strong>boleta:</strong> <br>
+     <%= @constancia_documento.boleta %><br>
+     <strong>de la Unidad Académica:</strong><br>
+     <%= @constancia_documento.unidad_academica %><br>
+     <strong>pasante del programa académico:</strong><br>
+     <%= @constancia_documento.programa_academico %><br>
+   </p>
    <p align="justify" style="font-size:16px">
-     Liberación de servicio social conforme a lo dispuesto por el articulo 73 fracción XVI,
-     Bases 2a y 3a de la Constitución Política de los Estados Unidos Mexicanos,
-     en relacion a las medias instrumentadas por la Secretaria de Salud como
-     medida y control de la epidemia generada por el virus SARS-CoV2 publicado
-     en el decreto de fecha 27 de marzo de 2020 en el Diario Oficial de la Federación.
+     Ha liberado su Servicio Social, cumpliendo con lo previsto por el artículo 4,
+     párrafo cuarto de la Constitución Política de los Estados Unidos Mexicanos y
+     atendiendo las disposiciones que en materia de salud han determinado el Consejo
+     de Salubridad General y la Secretaría de Salud del Gobierno Federal con motivo
+     del combate de la enfermedad generada por el virus sars-cov2 (covid-19).
   </p>
   <% end %>
   <p align="center" style="font-size:20px">
