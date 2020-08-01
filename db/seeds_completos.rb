@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib','seeds','bloqueunoprueba.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds','ESM.csv'))
 csv = CSV.parse(csv_text, headers: true)
 
 csv.each do |row|
@@ -24,6 +24,8 @@ csv.each do |row|
   t.constancia_emitida = row['EMITIDA']
   t.user_id = row['USERID']
   t.correo = row['CORREO']
+  t.created_at = Time.now
+  t.updated_at = Time.now
 
   t.save
 end
