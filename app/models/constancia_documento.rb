@@ -98,9 +98,9 @@ class ConstanciaDocumento < ApplicationRecord
     hash_firma[:data][:cadena].each do |x|
       constancia = ConstanciaDocumento.find("#{x[:id]}")
       constancia.update_attributes(firma_direccion: "#{x[:firma]}")
-      if constancia.correo.present?
-        UserMailer.email_notificacion(constancia).deliver unless constancia.invalid?
-      end
+      #if constancia.correo.present?
+        #UserMailer.email_notificacion(constancia).deliver unless constancia.invalid?
+      #end
     end
   end
 
