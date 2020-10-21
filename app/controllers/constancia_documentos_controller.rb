@@ -19,7 +19,7 @@ class ConstanciaDocumentosController < ApplicationController
       ) || return
     else
       @filterrific = initialize_filterrific(
-        ConstanciaDocumento.order('numero_oficio DESC'),
+        ConstanciaDocumento.order('created_at DESC'),
         params[:filterrific],
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
