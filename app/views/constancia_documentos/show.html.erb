@@ -67,16 +67,6 @@
   <strong>Prestatario:</strong>
   <%= @constancia_documento.prestatario %>
 </p>
-<% if @constancia_documento.constancia_emitida == false %>
-<p><strong>Constancia:</strong>
-En espera de validación por la División de Servicio Social
-</p>
-<% else %>
-<p>
-  <strong>Constancia:</strong>
-Validada por la División de Servicio Social
-</p>
-<% end %>
 
 <% if @constancia_documento.firma_direccion.nil? %>
 <p>
