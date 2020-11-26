@@ -37,8 +37,13 @@
           <td><%= constancia_documento.boleta %></td>
           <td><%= constancia_documento.unidad_academica %></td>
           <td><%= constancia_documento.programa_academico %></td>
+          <%# if constancia_documento.periodo.present? && constancia_documento.prestatario.present? %>
           <td><%= constancia_documento.periodo %></td>
           <td><%= constancia_documento.prestatario %></td>
+          <%# else %>
+          <!--<td>Constancia de servicio social liberada de acuerdo al comunicado del 20 de mayo de 2020 emitido por la Dirección General del IPN</td>-->
+          <!--<td>Constancia de servicio social liberada de acuerdo al comunicado del 20 de mayo de 2020 emitido por la Dirección General del IPN</td>-->
+          <%# end %>
           <% if policy(@constancia_documentos).datos_captura? %>
             <% if constancia_documento.firma_direccion.present? %>
               <td class="alert-success">Firmada</td>
