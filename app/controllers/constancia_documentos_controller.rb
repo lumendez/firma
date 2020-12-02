@@ -6,10 +6,11 @@ class ConstanciaDocumentosController < ApplicationController
   # GET /constancia_documentos.json
 
   # Se muestran las conctancias al director unicamente sino están firmadas
+  #"firma_direccion = ? AND constancia_emitida = ?", nil , true
   def index
     if current_user.role.nombre == "Dirección"
       @filterrific = initialize_filterrific(
-        ConstanciaDocumento.where(firma_direccion: nil).order('numero_oficio DESC'),
+        ConstanciaDocumento.where(firma_direccion: nil, constancia_emitida: true).order('numero_oficio DESC'),
         params[:filterrific],
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
