@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib','seeds','29septiembre21.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds','12octubre21.csv'))
 csv = CSV.parse(csv_text, headers: true)
 
 csv.each do |row|
@@ -10,8 +10,8 @@ csv.each do |row|
   t.id = row['ID']
   t.numero_relacion = row['RELACION']
   t.numero_oficio = row['OFICIO']
-  t.codigo_prestatario = row['CODIGO']
-  t.clave_programa = row['PROGRAMA']
+  t.codigo_prestatario = ""
+  t.clave_programa = ""
   t.fecha = row['FECHA']
   t.nombre = row['NOMBRE']
   t.apellido_paterno = row['PATERNO']
@@ -19,12 +19,11 @@ csv.each do |row|
   t.boleta = row['BOLETA']
   t.unidad_academica = row['UNIDAD']
   t.programa_academico = row['CARRERA']
-  t.periodo = row['FECHA TEXTO']
-  t.prestatario = row['PRESTATARIO']
+  t.periodo = ""
+  t.prestatario = ""
   t.constancia_emitida = row['EMITIDA']
   t.user_id = row['USERID']
-  t.created_at = Time.now
-  t.updated_at = Time.now
+  t.correo = ""
 
   t.save
 end
