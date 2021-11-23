@@ -1,4 +1,4 @@
-<% if user_signed_in? && current_user.role.nombre == 'Dirección' or user_signed_in? && current_user.role.nombre == 'Administrador' or user_signed_in? && current_user.role.nombre == 'Revisor'%>
+<% if user_signed_in? && current_user.role.nombre == 'Dirección' or user_signed_in? && current_user.role.nombre == 'Administrador'%>
 <div class="row" style="float:right">
   <p><strong>Constancias capturadas:</strong> <%= ConstanciaDocumento.all.count %><br>
      <strong>Constancias firmadas:</strong> <%= ConstanciaDocumento.where.not(firma_direccion:nil).count %><br>
