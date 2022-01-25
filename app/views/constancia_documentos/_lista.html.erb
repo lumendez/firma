@@ -17,6 +17,7 @@
         <th>Prestatario</th>
         <% if policy(@constancia_documentos).datos_captura? %>
         	 <th>Estado</th>
+        	 <th>Validaci&oacute;n</th>
           <th>Captura</th>
           <th>Fecha</th>
         <% end %>
@@ -49,6 +50,11 @@
               <td class="alert-success">Firmada</td>
             <% else %>
               <td class="alert-warning">En proceso de firma</td>
+            <% end %>
+            <% if constancia_documento.constancia_emitida? %>
+              <td class="alert-primary">Si</td>
+            <% else %>
+              <td class="alert-danger">No</td>
             <% end %>
             <td><%= constancia_documento.user.nombre_completo %></td>
             <td><%= constancia_documento.creado %></td>
