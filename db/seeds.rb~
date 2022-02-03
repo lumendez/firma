@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib','seeds','12diciembre21.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds','03enero22.csv'))
 csv = CSV.parse(csv_text, headers: true)
 
 csv.each do |row|
@@ -23,8 +23,6 @@ csv.each do |row|
   t.prestatario = row['PRESTATARIO']
   t.constancia_emitida = row['EMITIDA']
   t.user_id = row['USERID']
-  t.created_at = DateTime.new(2021, 12, 21, 22, 35, 0)
-  t.updated_at = DateTime.new(2021, 12, 21, 22, 35, 0)
 
   t.save
 end
