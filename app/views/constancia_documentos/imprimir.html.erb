@@ -31,7 +31,7 @@
       <td colspan="2">
       </td>
       <td width="35%">
-        <span style="font-size:12px"><strong>Asunto:</strong> CONSTANCIA DE SERVICIO SOCIAL
+        <span style="font-size:11px"><strong>Asunto:</strong> CONSTANCIA DE SERVICIO SOCIAL
         <br><strong>Oficio:</strong> <%= @constancia_documento.numero_oficio %>
         <br><strong>Registro:</strong> <%= @constancia_documento.numero_registro %>
         <% if @constancia_documento.codigo_prestatario.present? && @constancia_documento.clave_programa.present? %>
@@ -42,7 +42,7 @@
       </td>
     </tr>
   </table>
-  <p style="font-size:16px"><strong>
+  <p style="font-size:15px"><strong>
    C. DIRECTOR GENERAL DE PROFESIONES<br>
    SECRETARÍA DE EDUCACIÓN PÚBLICA<br>
    INSURGENTES SUR No. 2387<br>
@@ -68,8 +68,25 @@
     <strong>prestando sus servicios en:</strong><br>
     <%= @constancia_documento.prestatario %><br>
   </p>
+   <% elsif @constancia_documento.prestatario == "LIBERACION POR ARTICULO 52" %>
+     <p align="justify" style="font-size:15px"><strong>
+    La Dirección de Egresados y Servicio Social del Instituto Politécnico
+    Nacional, con base en las disposiciones contenidas en la Ley Reglamentaria
+    del Artículo 5° Constitucional y de su Reglamento, así como del Reglamento de
+    Servicio Social del Instituto, hace constar que, de acuerdo a los documentos que
+    obran en los archivos del Departamento de Control y Trámite de Servicio
+    Social, el alumno:</strong><br>
+    <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %> <%= @constancia_documento.apellido_materno %><br>
+    <strong>boleta:</strong> <br>
+    <%= @constancia_documento.boleta %><br>
+    <strong>de la Unidad Académica:</strong><br>
+    <%= @constancia_documento.unidad_academica %><br>
+    <strong>pasante del programa académico:</strong><br>
+    <%= @constancia_documento.programa_academico %><br>
+    <strong>ha cumplido con su SERVICIO SOCIAL de acuerdo con lo establecido en el art&iacute;culo 52 de la Ley Reglamentaria del art&iacute;culo 5° constitucional</strong><br>
+    </p>
    <% else %>
-   <p align="justify" style="font-size:16px"><strong>
+   <p align="justify" style="font-size:15px"><strong>
      La Dirección de Egresados y Servicio Social del Instituto Politécnico Nacional
      con fundamento en lo dispuesto por los artículos 52 y 53 de la Ley Reglamentaria
      del Artículo 5 Constitucional relativo al ejercicio de profesiones en la Ciudad
@@ -88,7 +105,7 @@
      <strong>pasante del programa académico:</strong><br>
      <%= @constancia_documento.programa_academico %><br>
    </p>
-   <p align="justify" style="font-size:16px">
+   <p align="justify" style="font-size:15px">
      Ha liberado su Servicio Social, cumpliendo con lo previsto por el artículo 4,
      párrafo cuarto de la Constitución Política de los Estados Unidos Mexicanos y
      atendiendo las disposiciones que en materia de salud han determinado el Consejo
@@ -96,7 +113,7 @@
      del combate de la enfermedad generada por el virus sars-cov2 (covid-19).
   </p>
   <% end %>
-  <p align="center" style="font-size:20px">
+  <p align="center" style="font-size:19px">
     <strong>"LA TÉCNICA AL SERVICIO DE LA PATRIA"</strong>
   </p>
   <table style="font-size:12px; margin:0 auto;" width="800">
@@ -113,24 +130,24 @@
           ))
           %>
       </td>
-      <td style="padding-left: 10px">
+      <td style="padding-left: 9px">
         <strong>Firma electrónica:</strong><br>
         <%= @constancia_documento.firma_direccion.scan(/.{1}/).join("\n") %>
       </td>
     </tr>
     <tr>
-      <td style="padding-left: 10px">
+      <td style="padding-left: 9px">
         <strong>Sello:</strong><br>
         <%= @constancia_documento.firma_departamento %>
       </td>
     </tr>
     </table>
-    <p align="center" style="font-size:18px">
+    <p align="center" style="font-size:17px">
       <strong>LIC. RICARDO MARTÍN HERNÁNDEZ RAMÍREZ</strong>
       <br>
-      <strong><span style="font-size:16px">DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</span></strong>
+      <strong><span style="font-size:15px">DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</span></strong>
     </p>
-    <p align="left" style="font-size:10px">
+    <p align="left" style="font-size:9px">
       <strong>Validó información: M. en C. Luis Alberto Mendez Cruz - Jefe de la División de Servicio Social</strong>
       <br>
       <strong>Responsable de la información: Ing. Patricia Villanueva Guerrero -  Jefa del Departamento de Control y Trámite de Servicio Social.</strong>

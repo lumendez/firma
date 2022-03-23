@@ -68,6 +68,23 @@
     <strong>prestando sus servicios en:</strong><br>
     <%= @constancia_documento.prestatario %><br>
   </p>
+   <% elsif @constancia_documento.prestatario == "LIBERACION POR ARTICULO 52" %>
+     <p align="justify" style="font-size:16px"><strong>
+    La Dirección de Egresados y Servicio Social del Instituto Politécnico
+    Nacional, con base en las disposiciones contenidas en la Ley Reglamentaria
+    del Artículo 5° Constitucional y de su Reglamento, así como del Reglamento de
+    Servicio Social del Instituto, hace constar que, de acuerdo a los documentos que
+    obran en los archivos del Departamento de Control y Trámite de Servicio
+    Social, el alumno:</strong><br>
+    <%= @constancia_documento.nombre %> <%= @constancia_documento.apellido_paterno %> <%= @constancia_documento.apellido_materno %><br>
+    <strong>boleta:</strong> <br>
+    <%= @constancia_documento.boleta %><br>
+    <strong>de la Unidad Académica:</strong><br>
+    <%= @constancia_documento.unidad_academica %><br>
+    <strong>pasante del programa académico:</strong><br>
+    <%= @constancia_documento.programa_academico %><br>
+    <strong>ha cumplido con su SERVICIO SOCIAL de acuerdo con lo establecido en el art&iacute;culo 52 de la Ley Reglamentaria del art&iacute;culo 5° constitucional</strong><br>
+    </p>
    <% else %>
    <p align="justify" style="font-size:16px"><strong>
      La Dirección de Egresados y Servicio Social del Instituto Politécnico Nacional
@@ -131,8 +148,8 @@
       <strong><span style="font-size:16px">DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</span></strong>
     </p>
     <p align="left" style="font-size:10px">
-      <strong>Validó información: C.P. Gerardo Elías Rodríguez Jaramillo - Jefe de la División de Servicio Social</strong>
+      <strong>Validó información: M. en C. Luis Alberto Mendez Cruz - Jefe de la División de Servicio Social</strong>
       <br>
-      <strong>Responsable de la información: M. en C. Luis Alberto Mendez Cruz -  Jefe del Departamento de Control y Trámite de Servicio Social.</strong>
+      <strong>Responsable de la información: Ing. Patricia Villanueva Guerrero -  Jefa del Departamento de Control y Trámite de Servicio Social.</strong>
     </p>
 </div>
