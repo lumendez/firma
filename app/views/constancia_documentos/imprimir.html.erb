@@ -142,11 +142,19 @@
       </td>
     </tr>
     </table>
-    <p align="center" style="font-size:17px">
-      <strong>LIC. RICARDO MARTÍN HERNÁNDEZ RAMÍREZ</strong>
-      <br>
-      <strong><span style="font-size:15px">DIRECTOR DE EGRESADOS<br>Y SERVICIO SOCIAL</span></strong>
-    </p>
+    <% if @constancia_documento.folio.nil? %>
+    	<p align="center" style="font-size:17px">
+      	<strong>Lic. Ricardo Martín Hernández Ramírez</strong>
+      	<br>
+      	<strong><span style="font-size:15px">Director de Egresados y Servicio Social</span></strong>
+    	</p>
+    <% else %>
+    	<p align="center" style="font-size:17px">
+      	<strong><%= @constancia_documento.folio %></strong>
+      	<br>
+      	<strong><span style="font-size:15px">Secretario de Innovación e Integración Social</span></strong>
+    	</p>
+    <% end %>
     <p align="left" style="font-size:9px">
       <strong>Validó información: M. en C. Luis Alberto Mendez Cruz - Jefe de la División de Servicio Social</strong>
       <br>
