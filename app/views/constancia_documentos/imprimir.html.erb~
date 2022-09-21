@@ -148,11 +148,17 @@
       	<br>
       	<strong><span style="font-size:15px">Director de Egresados y Servicio Social</span></strong>
     	</p>
-    <% else %>
+    <% elseif @constancia_documento.folio == "M. en C. Ricardo Monterrubio López" %>
     	<p align="center" style="font-size:17px">
-      	<strong>Lic. Ricardo Martín Hernández Ramírez</strong>
+      	<strong><%= @constancia_documento.folio %></strong>
       	<br>
-      	<strong><span style="font-size:15px">Director de Egresados y Servicio Social</span></strong>
+      	<strong><span style="font-size:15px">Secretario de Innovación e Integración Social</span></strong>
+    	</p>
+    	<% else %>
+    	<p align="center" style="font-size:17px">
+      	<strong><%= @constancia_documento.folio %></strong>
+      	<br>
+      	<strong><span style="font-size:15px">Director</span></strong>
     	</p>
     <% end %>
     <p align="left" style="font-size:9px">
