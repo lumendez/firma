@@ -22,7 +22,7 @@ csv.each do |row|
   t.periodo = row['FECHA TEXTO']
   t.prestatario = row['PRESTATARIO']
   t.constancia_emitida = row['EMITIDA']
-  t.folio = "Lic. Edgar Greogorio Cárcamo Villalobos"
+  t.folio = "M. en C. Ricardo Monterrubio López"
   t.user_id = row['USERID']
 
   t.save
