@@ -33,8 +33,8 @@ class User < ApplicationRecord
     self.role.nombre == "Revisor"
   end
 
-  def validador?
-    self.role.nombre == "Validador"
+  def unidad_academica?
+    self.role.nombre == "Unidad Academica"
   end
 
   def nombre_completo

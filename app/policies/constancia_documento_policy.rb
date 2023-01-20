@@ -1,22 +1,26 @@
 class ConstanciaDocumentoPolicy < ApplicationPolicy
   def index?
-    user.administrador? or user.direccion? or user.departamento? or user.captura? or user.validador?
+    user.administrador? or user.direccion? or user.departamento? or user.captura? or user.unidad_academica?
   end
 
   def new?
-    user.administrador? or user.departamento? or user.captura? or user.revisor?
+    user.administrador? or user.departamento? or user.captura?
   end
 
   def create?
-    user.administrador? or user.departamento? or user.captura? or user.revisor?
+    user.administrador? or user.departamento? or user.captura? or user.unidad_academica?
   end
 
   def show?
-    user.administrador? or user.departamento? or user.captura? or user.revisor?
+    user.administrador? or user.departamento? or user.captura? or user.unidad_academica?
   end
 
   def datos_captura?
-    user.administrador? or user.departamento? or user.revisor?
+    user.administrador? or user.departamento?
+  end
+
+  def datos_estado?
+    user.administrador? or user.departamento? or user.unidad_academica?
   end
 
   def validar_emision?
@@ -25,7 +29,7 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
 
   def update?
     user.administrador? or user.direccion? or user.departamento? or
-    user.captura? or user.revisor? or user.validador?
+    user.captura?
   end
 
   def firmar?
@@ -37,6 +41,6 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def opciones?
-    user.administrador? or user.departamento? or user.captura? or user.revisor?
+    user.administrador? or user.departamento? or user.captura?
   end
 end

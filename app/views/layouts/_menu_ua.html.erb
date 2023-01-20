@@ -1,0 +1,13 @@
+<li class="nav-item">
+  <%= link_to "Inicio", constancia_documentos_path, class:'nav-link' %>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" title="Menú usuario" href="#" id="Dropdown13" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <strong>Hola!</strong> <%= current_user.nombre %>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="Dropdown13">
+    <li>
+       <%= link_to "Salir", destroy_user_session_path, class:'dropdown-item', method: :delete %>
+    </li>
+  </ul>
+</li>

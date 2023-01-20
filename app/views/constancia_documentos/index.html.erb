@@ -27,6 +27,7 @@
         class: 'filterrific-periodically-observed form-control col-md-7'
       ) %>
     </div>
+    <% if user_signed_in? && current_user.role.nombre == 'Dirección' or user_signed_in? && current_user.role.nombre == 'Administrador' or user_signed_in? && current_user.role.nombre == 'Departamento' or user_signed_in? && current_user.role.nombre == 'Captura'%>
     <div class="col-md-4">
       <%= f.label :search_query, 'Escuela' %>
       <%= f.select(
@@ -36,6 +37,7 @@
         class: 'form-control col-md-8'
       ) %>
     </div>
+    <% end %>
     <div class="col-md-4">
       <%= f.label :search_query, 'Número de relación' %>
       <%= f.select(

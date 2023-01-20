@@ -28,7 +28,7 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <%= form.label :role_id %>
-        <%= collection_select(:user, :role_id, Role.all, :id, :nombre, {prompt: 'Seleccione'}, class: 'form-control ') %>
+        <%= collection_select(:user, :role_id, Role.all, :id, :nombre_descripcion, {prompt: 'Seleccione'}, class: 'form-control ') %>
       </div>
       <div class="form-group col-md-4">
         <%= form.label :email %><br />

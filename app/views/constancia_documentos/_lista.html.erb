@@ -15,9 +15,11 @@
         <th>Programa academico</th>
         <th>Periodo</th>
         <th>Prestatario</th>
-        <% if policy(@constancia_documentos).datos_captura? %>
+        <% if policy(@constancia_documentos).datos_estado? %>
         	 <th>Estado</th>
         	 <th>Validaci&oacute;n</th>
+        <% end %>
+        <% if policy(@constancia_documentos).datos_captura? %>
           <th>Captura</th>
           <th>Fecha</th>
         <% end %>
@@ -45,7 +47,7 @@
           <!--<td>Constancia de servicio social liberada de acuerdo al comunicado del 20 de mayo de 2020 emitido por la Dirección General del IPN</td>-->
           <!--<td>Constancia de servicio social liberada de acuerdo al comunicado del 20 de mayo de 2020 emitido por la Dirección General del IPN</td>-->
           <%# end %>
-          <% if policy(@constancia_documentos).datos_captura? %>
+          <% if policy(@constancia_documentos).datos_estado? %>
             <% if constancia_documento.firma_direccion.present? %>
               <td class="alert-success">Firmada</td>
             <% else %>
@@ -56,11 +58,15 @@
             <% else %>
               <td class="alert-danger">No</td>
             <% end %>
+          <% end %>
+          <% if policy(@constancia_documentos).datos_captura? %>
             <td><%= constancia_documento.user.nombre_completo %></td>
             <td><%= constancia_documento.creado %></td>
           <% end %>
-          <% if policy(@constancia_documentos).opciones? %>
+          <% if policy(@constancia_documentos).show? %>
             <td><%= link_to 'Mostrar', constancia_documento %></td>
+          <% end %>
+          <% if policy(@constancia_documentos).opciones? %>
             <td><%= link_to 'Editar', edit_constancia_documento_path(constancia_documento) %></td>
           <% end %>
           <% if policy(:constancia_documento).eliminar? %>

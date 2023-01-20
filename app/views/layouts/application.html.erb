@@ -92,8 +92,8 @@
             <% elsif user_signed_in? && current_user.role.nombre == 'Captura' or
              user_signed_in? && current_user.role.nombre == 'Revisor' %>
               <%= render 'layouts/menu_captura' %>
-              <% elsif user_signed_in? && current_user.role.nombre == 'Validador' %>
-                <%= render 'layouts/menu_validacion' %>
+              <% elsif user_signed_in? && current_user.role.nombre == 'Unidad Academica' %>
+                <%= render 'layouts/menu_ua' %>
             <% end %>
           </ul>
         </div>
