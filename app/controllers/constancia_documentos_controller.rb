@@ -70,7 +70,7 @@ class ConstanciaDocumentosController < ApplicationController
         ) || return
       elsif current_user.role.nombre == "Unidad Academica" && current_user.role.descripcion == "ESIMEAZ"
         @filterrific = initialize_filterrific(
-          ConstanciaDocumento.where(unidad_academica:"ESCUELA SUPERIOR DE INGENIERIA MECANICA Y ELECTRICA UNIDAD, AZCAPOTZALCO").order('numero_oficio DESC'),
+          ConstanciaDocumento.where(unidad_academica:"ESCUELA SUPERIOR DE INGENIERIA MECANICA Y ELECTRICA, UNIDAD AZCAPOTZALCO").order('numero_oficio DESC'),
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
