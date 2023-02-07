@@ -87,6 +87,8 @@
 <% end %>
 
 <% if user_signed_in? %>
-<%= link_to 'Editar', edit_constancia_documento_path(@constancia_documento) %> |
+  <% if policy(@constancia_documento).opciones? %>
+    <%= link_to 'Editar', edit_constancia_documento_path(@constancia_documento) %> |
+  <% end %>
 <%= link_to 'Regresar', constancia_documentos_path %>
 <% end %>
