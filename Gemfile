@@ -67,6 +67,8 @@ gem 'passenger'
 gem 'rest-client'
 # Para la conexion a la base de datos
 gem "mysql2"
+# Para la impresion de PDF
+gem 'concurrent-ruby', '~> 1.2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
