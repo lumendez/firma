@@ -1,35 +1,29 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib','seeds','9sept22.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds','21marzo23.csv'))
 csv = CSV.parse(csv_text, headers: true)
 
 csv.each do |row|
   t = ConstanciaDocumento.new
 
-  t.id = row['id']
-  t.folio = row['folio']
-  t.numero_relacion = row['numero_relacion']
-  t.numero_oficio = row['numero_oficio']
-  t.numero_registro = row['numero_registro']
-  t.codigo_prestatario = row['codigo_prestatario']
-  t.clave_programa = row['clave_programa']
-  t.fecha = row['fecha']
-  t.nombre = row['nombre']
-  t.boleta = row['boleta']
-  t.unidad_academica = row['unidad_academica']
-  t.programa_academico = row['programa_academico']
-  t.periodo = row['periodo']
-  t.prestatario = row['prestatario']
-  t.constancia_emitida = row['constancia_emitida']
-  t.created_at = row['created_at']
-  t.updated_at = row['updated_at']
-  t.firma_direccion = row['firma_direccion']
-  t.firma_departamento = row['firma_departamento']
-  t.apellido_paterno = row['apellido_paterno']
-  t.apellido_materno = row['apellido_materno']
-  t.user_id = row['user_id']
-  t.uuid = row['uuid']
-  t.correo = ""
+  t.numero_registro = row['REGISTRO']
+  t.id = row['ID']
+  t.numero_relacion = row['RELACION']
+  t.numero_oficio = row['OFICIO']
+  t.codigo_prestatario = row['CODIGO']
+  t.clave_programa = row['PROGRAMA']
+  t.fecha = row['FECHA']
+  t.nombre = row['NOMBRE']
+  t.apellido_paterno = row['PATERNO']
+  t.apellido_materno = row['MATERNO']
+  t.boleta = row['BOLETA']
+  t.unidad_academica = row['UNIDAD']
+  t.programa_academico = row['CARRERA']
+  t.periodo = row['FECHA TEXTO']
+  t.prestatario = row['PRESTATARIO']
+  t.constancia_emitida = row['EMITIDA']
+  t.folio = "Lic. Edgar Gregorio Cárcamo Villalobos"
+  t.user_id = row['USERID']
 
   t.save
 end
