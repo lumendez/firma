@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib','seeds','20dic22-2.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds','27marzo23.csv'))
 csv = CSV.parse(csv_text, headers: true)
 
 csv.each do |row|
