@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib','seeds','03abril23.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds','21abril23.csv'))
 csv = CSV.parse(csv_text, headers: true)
 
 csv.each do |row|
@@ -22,7 +22,7 @@ csv.each do |row|
   t.periodo = row['FECHA TEXTO']
   t.prestatario = row['PRESTATARIO']
   t.constancia_emitida = row['EMITIDA']
-  t.folio = "Lic. Edgar Gregorio Cárcamo Villalobos"
+  t.folio = "Lic. Heidi Janet Elizalde Mancilla"
   t.user_id = row['USERID']
 
   t.save
