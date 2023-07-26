@@ -13,7 +13,7 @@ class ConstanciaDocumento < ApplicationRecord
     ],
   )
 
-  paginates_per 50
+  paginates_per 40
 
   belongs_to :user
 
