@@ -13,6 +13,7 @@
         <th>Periodo</th>
         <th>Prestatario</th>
         <th>Estado</th>
+        <th>Ver</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
           <td><%= constancia_documento.periodo %></td>
           <td><%= constancia_documento.prestatario %></td>
           <td class="alert-success">Firmada</td>
+          <td><%= link_to 'Mostrar', constancia_documento %></td>
         </tr>
       <% end %>
     </tbody>

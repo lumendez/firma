@@ -12,7 +12,7 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def show?
-    user.administrador? or user.departamento? or user.captura? or user.unidad_academica?
+    user.administrador? or user.departamento? or user.captura? or user.unidad_academica? or user.direccion?
   end
 
   def datos_captura?
