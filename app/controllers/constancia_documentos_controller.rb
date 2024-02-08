@@ -965,6 +965,17 @@ class ConstanciaDocumentosController < ApplicationController
           },
           sanitize_params: true,
         ) || return
+      elsif current_user.role.nombre == "Unidad Academica" && current_user.role.descripcion == "UPIEM"
+        @filterrific = initialize_filterrific(
+          ConstanciaDocumento.where(unidad_academica:"UNIDAD PROFESIONAL INTERDISCIPLINARIA DE ENERGIA Y MOVILIDAD"
+          ).order('numero_oficio DESC'),
+          params[:filterrific],
+          select_options: {
+            unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+          },
+          sanitize_params: true,
+        ) || return
     else
       @filterrific = initialize_filterrific(
         ConstanciaDocumento.order('created_at DESC'),
