@@ -712,7 +712,7 @@ class ConstanciaDocumentosController < ApplicationController
         ) || return
       elsif current_user.role.nombre == "Unidad Academica" && current_user.role.descripcion == "ILBC"
         @filterrific = initialize_filterrific(
-          ConstanciaDocumento.where(unidad_academica:"INSTITUTO LEONARDO BRAVO, A.C., PLANTEL CENTRO"
+          ConstanciaDocumento.where(unidad_academica:"INSTITUTO LEONARDO BRAVO, A.C."
           ).order('numero_oficio DESC'),
           params[:filterrific],
           select_options: {
