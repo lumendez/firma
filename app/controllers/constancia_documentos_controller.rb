@@ -268,6 +268,16 @@ class ConstanciaDocumentosController < ApplicationController
           },
           sanitize_params: true,
         ) || return
+      elsif current_user.role.nombre == "Unidad Academica" && current_user.role.descripcion == "UPIIPAL"
+        @filterrific = initialize_filterrific(
+          ConstanciaDocumento.where(unidad_academica:"UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERIA, CAMPUS PALENQUE").order('numero_oficio DESC'),
+          params[:filterrific],
+          select_options: {
+            unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+          },
+          sanitize_params: true,
+        ) || return
       elsif current_user.role.nombre == "Unidad Academica" && current_user.role.descripcion == "UPIICSA"
         @filterrific = initialize_filterrific(
           ConstanciaDocumento.where(unidad_academica:"UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERIA Y CIENCIAS SOCIALES Y ADMINISTRATIVAS").order('numero_oficio DESC'),
