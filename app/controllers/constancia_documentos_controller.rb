@@ -986,7 +986,7 @@ class ConstanciaDocumentosController < ApplicationController
         ) || return
       elsif current_user.role.nombre == "Unidad Academica" && current_user.role.descripcion == "IMCN"
         @filterrific = initialize_filterrific(
-          ConstanciaDocumento.where(unidad_academica:"INSTITUTO MEXICANO DE CERTIFICACION Y NORMAS"
+          ConstanciaDocumento.where(unidad_academica:"INSTITUTO MEXICANO DE CERTIFICACIÓN Y NORMAS, S.C."
           ).order('numero_oficio DESC'),
           params[:filterrific],
           select_options: {
