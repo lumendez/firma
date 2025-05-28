@@ -37,6 +37,10 @@ class User < ApplicationRecord
     self.role.nombre == "Unidad Academica"
   end
 
+  def externo?
+    self.role.nombre == "Externo"
+  end
+
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"
   end

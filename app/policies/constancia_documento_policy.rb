@@ -1,6 +1,6 @@
 class ConstanciaDocumentoPolicy < ApplicationPolicy
   def index?
-    user.administrador? or user.direccion? or user.departamento? or user.captura? or user.unidad_academica?
+    user.administrador? or user.direccion? or user.departamento? or user.captura? or user.unidad_academica? or user.externo?
   end
 
   def new?
@@ -12,7 +12,7 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def show?
-    user.administrador? or user.departamento? or user.captura? or user.unidad_academica? or user.direccion?
+    user.administrador? or user.departamento? or user.captura? or user.unidad_academica? or user.direccion? or user.externo?
   end
 
   def datos_captura?
@@ -20,7 +20,7 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def datos_estado?
-    user.administrador? or user.departamento? or user.unidad_academica?
+    user.administrador? or user.departamento? or user.unidad_academica? or user.externo?
   end
 
   def validar_emision?
