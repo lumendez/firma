@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2.8'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -41,7 +41,7 @@ gem 'kaminari'
 # Para los estilos de la paginación con kaminari
 gem 'bootstrap4-kaminari-views'
 # Para el filtrado de los registros
-gem 'filterrific'
+gem 'filterrific', '~> 5.2'
 # Para realizar consultas más legibles en la consola
 gem 'awesome_rails_console'
 # Para generar pdf a partir de html
@@ -73,6 +73,7 @@ gem "mysql2"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

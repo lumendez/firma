@@ -16,7 +16,7 @@ class ConstanciaDocumentoPolicy < ApplicationPolicy
   end
 
   def datos_captura?
-    user.administrador? or user.departamento?
+  user.administrador? or user.departamento? or user.direccion?
   end
 
   def datos_estado?

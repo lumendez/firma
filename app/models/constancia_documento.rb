@@ -1,3 +1,5 @@
+require 'csv'
+require 'date'
 class ConstanciaDocumento < ApplicationRecord
   uuidable
 
@@ -7,9 +9,10 @@ class ConstanciaDocumento < ApplicationRecord
 
   filterrific(
     available_filters: [
-      :search_query,
-      :unidad_academica,
-      :numero_relacion
+    :search_query, 
+    :unidad_academica,
+    :numero_relacion,
+    :carrera
     ],
   )
 
@@ -25,32 +28,36 @@ class ConstanciaDocumento < ApplicationRecord
       self.constancia_emitida = false if self.constancia_emitida.nil?
   end
 
-  scope :search_query, lambda { |query|
+ scope :search_query, lambda { |query|
+  # Si no hay consulta, no filtra
+  return nil if query.blank?
 
-    # Filtra a los usuarios por nombre o apellido paterno
-    return nil  if query.blank?
+  # Dividir la consulta en palabras y pasar a minúsculas
+  terms = query.to_s.downcase.split(/\s+/)
 
-    # Condiciones del query divididas en palabras separadas y en minúsculas
-    terms = query.to_s.downcase.split(/\s+/)
+  # Reemplaza "*" por "%" para comodines y limpia duplicados
+  terms = terms.map { |e| (e.gsub('*', '%') + '%').gsub(/%+/, '%') }
 
-    # Reemplaza "*" con "%" para búsquedas con comodin,
-    # liga '%', quita los '%' duplicados
-    terms = terms.map { |e|
-      (e.gsub('*', '%') + '%').gsub(/%+/, '%')
-    }
+  # Cada palabra genera condiciones sobre boleta, apellido_paterno y apellido_materno
+  where(
+    terms.map do |term|
+      "(LOWER(constancia_documentos.boleta) LIKE :term OR 
+        LOWER(constancia_documentos.apellido_paterno) LIKE :term OR 
+        LOWER(constancia_documentos.apellido_materno) LIKE :term)"
+    end.join(' AND '),
+    *terms.map { |term| { term: term } }
+  )
+}
 
-    # Configura el numero de condiciones OR proporcionados (provision)
-    # como argumentos de interpolaciOn. Ajustar si se cambian el
-    # número de condiciones OR.
-    num_or_conds = 1
+  # Se agrega scope para filtrar por unidad académica
+scope :unidad_academica, ->(unidad_academica) { where(unidad_academica: [*unidad_academica]) }
 
-    where(
-      terms.map { |term|
-        "(constancia_documentos.boleta LIKE ?)"
-      }.join(' AND '),
-      *terms.map { |e| [e] * num_or_conds }.flatten
-    )
-  }
+# Se agrega scope para filtrar por número de relación
+scope :numero_relacion, ->(numero_relacion) { where(numero_relacion: [*numero_relacion]) }
+
+# Se agrega scope para filtrar por carrera (programa académico)
+scope :carrera, ->(carrera) { where(programa_academico: [*carrera]) }
+
 
   def to_param
     uuid
@@ -59,41 +66,86 @@ class ConstanciaDocumento < ApplicationRecord
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"
   end
+# Se agrega metodo para importar datos desde un archivo CSV
+# file_path se utiliza para ruta del archivo CSV que se va a procesar
+# Retorna un hash con la cantidad de registros exitosos y con errores
+def self.importar_csv(file_path)
+  exitosos = 0
+  errores = 0
 
-  def self.formar_cadena(constancia_documento_ids)
-    constancia_documentos = ConstanciaDocumento.find(constancia_documento_ids)
-    cadenas = []
-    constancia_documentos.each do |constancia_documento|
-      numero_relacion = constancia_documento.numero_relacion
-      numero_oficio = constancia_documento.numero_oficio
-      numero_registro = constancia_documento.numero_registro
-      codigo_prestatario = constancia_documento.codigo_prestatario
-      clave_programa = constancia_documento.clave_programa
-      fecha = constancia_documento.fecha
-      nombre = constancia_documento.nombre
-      paterno = constancia_documento.apellido_paterno
-      materno = constancia_documento.apellido_materno
-      boleta = constancia_documento.boleta
-      unidad_academica = constancia_documento.unidad_academica
-      programa_academico = constancia_documento.programa_academico
-      periodo = constancia_documento.periodo
-      prestatario = constancia_documento.prestatario
-      creado = constancia_documento.created_at.to_s
-      uuid = constancia_documento.uuid
-      cadena = '||' + numero_relacion + '|' + numero_oficio + '|' +
-      numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
-      fecha + '|' + nombre + '|' + paterno + '|' + materno + '|' + boleta + '|' +
-      unidad_academica + '|' + programa_academico + '|' + creado + '|' + uuid +'||'
-      constancia_documento.update_attributes(firma_departamento: cadena)
-      objetos = Hash.new
-      objetos["cadena"] = cadena
-      objetos["id"] = constancia_documento.id
-      cadenas << objetos
+  contenido = File.read(file_path, encoding: 'UTF-8').sub("\uFEFF", '')
+  csv = CSV.parse(contenido, headers: true, col_sep: ",", quote_char: '"', liberal_parsing: true)
+
+  csv.each_with_index do |row, index|
+    begin
+      ConstanciaDocumento.create!(
+        numero_registro: row['REGISTRO'].to_s.strip,
+        numero_relacion: row['RELACION'].to_s.strip,
+        numero_oficio: row['OFICIO'].to_s.strip,
+        codigo_prestatario: row['CODIGO'].to_s.strip,
+        clave_programa: row['PROGRAMA'].to_s.strip,
+        fecha: (Date.parse(row['FECHA'].to_s) rescue nil),
+        nombre: row['NOMBRE'].to_s.strip,
+        apellido_paterno: row['PATERNO'].to_s.strip,
+        apellido_materno: row['MATERNO'].to_s.strip,
+        boleta: row['BOLETA'].to_s.strip,
+        unidad_academica: row['UNIDAD'].to_s.strip,
+        programa_academico: row['CARRERA'].to_s.strip,
+        periodo: row['FECHA TEXTO'].to_s.strip,
+        prestatario: row['PRESTATARIO'].to_s.strip,
+        constancia_emitida: row['EMITIDA'].to_s.strip == '1',
+        folio: "Lic. Beatriz Rangel Romo",
+        user_id: 1   
+      )
+      exitosos += 1
+    rescue => e
+      Rails.logger.error "Fila #{index + 2} - Error: #{e.message}"
+      errores += 1
     end
-    cadenas.to_json
   end
 
-  def self.actualizar_firma(firma_electronica)
+  { exitosos: exitosos, errores: errores }
+end
+
+  
+ def self.formar_cadena(constancia_documento_uuids)
+  constancia_documentos = ConstanciaDocumento.where(uuid: Array(constancia_documento_uuids))
+  cadenas = []
+
+  constancia_documentos.each do |constancia_documento|
+    numero_relacion = constancia_documento.numero_relacion
+    numero_oficio = constancia_documento.numero_oficio
+    numero_registro = constancia_documento.numero_registro
+    codigo_prestatario = constancia_documento.codigo_prestatario
+    clave_programa = constancia_documento.clave_programa
+    fecha = constancia_documento.fecha
+    nombre = constancia_documento.nombre
+    paterno = constancia_documento.apellido_paterno
+    materno = constancia_documento.apellido_materno
+    boleta = constancia_documento.boleta
+    unidad_academica = constancia_documento.unidad_academica
+    programa_academico = constancia_documento.programa_academico
+    periodo = constancia_documento.periodo
+    prestatario = constancia_documento.prestatario
+    creado = constancia_documento.created_at.to_s
+    uuid = constancia_documento.uuid
+
+    cadena = '||' + numero_relacion + '|' + numero_oficio + '|' +
+      numero_registro + '|' + codigo_prestatario + '|' + clave_programa + '|' +
+      fecha + '|' + nombre + '|' + paterno + '|' + materno + '|' + boleta + '|' +
+      unidad_academica + '|' + programa_academico + '|' + creado + '|' + uuid + '||'
+
+    constancia_documento.update!(firma_departamento: cadena)
+
+    objetos = { "cadena" => cadena, "id" => constancia_documento.id }
+    cadenas << objetos
+  end
+
+  cadenas.to_json
+end
+
+
+  def self.actualizar_firma(firma_electronica, *args)
     hash_firma = eval(firma_electronica)
     hash_firma[:data][:cadena].each do |x|
       constancia = ConstanciaDocumento.find("#{x[:id]}")
@@ -112,11 +164,15 @@ class ConstanciaDocumento < ApplicationRecord
   end
 
   def self.generar_lista(relacion, escuela, anio)
-    # Usar la siguiente expresion para generar la busqueda en SQLite
-    #constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND cast(strftime('%Y', created_at) as int) = ?", relacion, escuela, anio)
-    # Usar la siguiente expresion para generar la busqueda en MySQL
-    constancia_documentos = ConstanciaDocumento.where("numero_relacion = ? AND unidad_academica = ? AND extract(year from created_at) = ?", relacion, escuela, anio)
-  end
+  # Compatible con SQLite
+  ConstanciaDocumento.where(
+    "numero_relacion = ? AND unidad_academica = ? AND cast(strftime('%Y', created_at) as int) = ?",
+    relacion,
+    escuela,
+    anio.to_i
+  )
+end
+
 
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"
@@ -151,7 +207,6 @@ class ConstanciaDocumento < ApplicationRecord
       ['ISISA UPIIG', 'RED ACADEMICA DE INGENIERIA EN SISTEMAS AUTOMOTRICES (ISISA) - UPIIG'],
       ['ISISA UPIIH', 'RED ACADEMICA DE INGENIERIA EN SISTEMAS AUTOMOTRICES (ISISA) - UPIIH'],
       ['ISISA UPIITA', 'RED ACADEMICA DE INGENIERIA EN SISTEMAS AUTOMOTRICES (ISISA) - UPIITA'],
-      ['ISISA UPII TLAXCALA', 'RED ACADEMICA DE INGENIERIA EN SISTEMAS AUTOMOTRICES (ISISA) - UPII TLAXCALA'],
       ['ISISA ZACATENCO', 'RED ACADEMICA DE INGENIERIA EN SISTEMAS AUTOMOTRICES (ISISA) - ESIME ZACATENCO'],
       ['UPII GUANAJUATO',	'UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERIA, CAMPUS GUANAJUATO'],
       ['UPII COAHUILA',	'UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERIA, CAMPUS COAHUILA'],    
@@ -214,8 +269,7 @@ class ConstanciaDocumento < ApplicationRecord
       ['INSTITUTO LEONARDO BRAVO, A.C., PLANTEL LA RAZA, ILB LA RAZA', 'INSTITUTO LEONARDO BRAVO, A.C., PLANTEL LA RAZA'], 	
       ['INSTITUTO LEONARDO BRAVO, A.C., PLANTEL VERACRUZ, ILB VERACRUZ', 'INSTITUTO LEONARDO BRAVO, A.C., PLANTEL VERACRUZ'],
       ['INSTITUTO MEXICANO DE EDUCACION PROFESIONAL, PLANTEL SANTA MARTHA, IMEP STM', 'INSTITUTO MEXICANO DE EDUCACION PROFESIONAL, PLANTEL SANTA MARTHA'],
-      ['INSTITUTO MEXICANO DE EDUCACION PROFESIONAL, PLANTEL IZTAPALAPA, IMEP ZAR', 'INSTITUTO MEXICANO DE EDUCACION PROFESIONAL, PLANTEL IZTAPALAPA'],
-      ['INSTITUTO MEXICANO DE CERTIFICACION Y NORMAS, INMCN', 'INSTITUTO MEXICANO DE CERTIFICACION Y NORMAS, S.C.'],		
+      ['INSTITUTO MEXICANO DE EDUCACION PROFESIONAL, PLANTEL IZTAPALAPA, IMEP ZAR', 'INSTITUTO MEXICANO DE EDUCACION PROFESIONAL, PLANTEL IZTAPALAPA'],	
       ['INSTITUTO SUPERIOR DE ESTUDIOS COMERCIALES, ISECO', 'INSTITUTO SUPERIOR DE ESTUDIOS COMERCIALES'],
       ['INSTITUTO TECNICO Y BANCARIO, "SAN CARLOS, ITB SAN CARLOS', 'INSTITUTO TECNICO Y BANCARIO, "SAN CARLOS"'],
       ['INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DEL SURESTE, A.C., ITESS', 'INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DEL SURESTE, A.C.'],	
@@ -366,6 +420,19 @@ class ConstanciaDocumento < ApplicationRecord
       ["210", "210"]
     ]
   end
+#Se agrega el metodo para el filtro de carrera, se conecta a la base de datos y extrae 
+#las carreras de acuerdo a los archivos csv que se carguen, se utiliza con el fin de no sobresaturar
+#de codigo y optimizar el proceso, .sort ordena las carreras por orden alfabetico y .map convierte 
+#el valor en par para tener un select correcto
+def self.options_for_carrera
+  ConstanciaDocumento
+    .select(:programa_academico)
+    .distinct
+    .pluck(:programa_academico)
+    .compact
+    .sort
+    .map { |c| [c, c] }
+end
 
   def self.fecha_alfanumerica
     dia = Time.now.day

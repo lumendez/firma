@@ -10,9 +10,7 @@ class User < ApplicationRecord
   enum otp_module: {disabled: 0, enabled: 1}, _prefix: true
   attr_accessor :otp_code_token
 
-
-
-
+  # Métodos de rol
   def administrador?
     self.role.nombre == "Administrador"
   end
@@ -41,6 +39,8 @@ class User < ApplicationRecord
     self.role.nombre == "Externo"
   end
 
+
+  # Otros métodos del modelo
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"
   end
@@ -49,8 +49,7 @@ class User < ApplicationRecord
     if self.last_sign_in_at?
       self.last_sign_in_at.strftime("%d/%m/%y a las %T %P")
     else
-      "Este usuario no ha inciado sesión"
+      "Este usuario no ha iniciado sesión"
     end
   end
-
 end

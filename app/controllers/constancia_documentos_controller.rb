@@ -10,11 +10,12 @@ class ConstanciaDocumentosController < ApplicationController
   def index
     if current_user.role.nombre == "Dirección"
       @filterrific = initialize_filterrific(
-        ConstanciaDocumento.where(firma_direccion: nil, constancia_emitida: true).order('numero_oficio DESC'),
+        ConstanciaDocumento.where(firma_direccion: nil,constancia_emitida: true).order('numero_oficio DESC'),
         params[:filterrific],
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-          numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+          numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+          carrera: ConstanciaDocumento.options_for_carrera
         },
         sanitize_params: true,
       ) || return
@@ -24,7 +25,9 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
+        
           },
           sanitize_params: true,
         ) || return
@@ -34,7 +37,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -44,7 +48,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -54,7 +59,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -64,7 +70,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -74,7 +81,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -84,7 +92,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -94,7 +103,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -104,7 +114,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -114,7 +125,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -124,7 +136,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -134,7 +147,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -144,7 +158,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -154,7 +169,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -164,7 +180,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -174,7 +191,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -184,7 +202,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -194,7 +213,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -204,7 +224,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -214,7 +235,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -224,7 +246,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -234,7 +257,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -244,7 +268,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -254,7 +279,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -264,7 +290,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -274,7 +301,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -284,7 +312,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -294,7 +323,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -304,7 +334,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -314,7 +345,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -324,7 +356,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -334,7 +367,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -344,7 +378,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -354,7 +389,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -364,7 +400,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -374,7 +411,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -384,7 +422,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -394,7 +433,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -404,7 +444,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -414,7 +455,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -424,7 +466,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -434,7 +477,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -444,7 +488,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -454,7 +499,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -464,7 +510,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -474,7 +521,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -485,7 +533,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -496,7 +545,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -507,7 +557,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -518,7 +569,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -529,7 +581,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -540,7 +593,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -551,7 +605,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -562,7 +617,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -573,7 +629,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -584,7 +641,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -595,7 +653,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -606,7 +665,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -617,7 +677,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -628,7 +689,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -639,7 +701,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -650,7 +713,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -661,7 +725,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -672,7 +737,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -683,7 +749,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -694,7 +761,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -705,7 +773,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -716,7 +785,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -727,7 +797,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -738,7 +809,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -749,7 +821,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -760,7 +833,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -771,7 +845,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -782,7 +857,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -793,7 +869,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -804,7 +881,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -815,7 +893,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -826,7 +905,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -837,7 +917,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -848,7 +929,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -859,7 +941,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -870,7 +953,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -881,7 +965,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -892,7 +977,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -903,7 +989,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -914,7 +1001,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -925,7 +1013,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -936,7 +1025,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -947,7 +1037,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -958,7 +1049,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -969,7 +1061,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -980,7 +1073,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -991,7 +1085,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -1002,7 +1097,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -1013,7 +1109,8 @@ class ConstanciaDocumentosController < ApplicationController
           params[:filterrific],
           select_options: {
             unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-            numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+            numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+            carrera: ConstanciaDocumento.options_for_carrera
           },
           sanitize_params: true,
         ) || return
@@ -1023,11 +1120,19 @@ class ConstanciaDocumentosController < ApplicationController
         params[:filterrific],
         select_options: {
           unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
-          numero_relacion: ConstanciaDocumento.options_for_numero_relacion
+          numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+          carrera: ConstanciaDocumento.options_for_carrera
         },
         sanitize_params: true,
       ) || return
     end
+
+    @filterrific_params = params.fetch(:filterrific, {}).permit(
+  :search_query, 
+  :unidad_academica,
+  :numero_relacion,
+  :carrera
+)
 
     @constancia_documentos = @filterrific.find.page(params[:pagina])
 
@@ -1136,19 +1241,23 @@ class ConstanciaDocumentosController < ApplicationController
     end
   end
 
-  def firmar
-    @constancia_documentos = ConstanciaDocumento.formar_cadena(params[:constancia_documento_ids])
+def firmar
+  @constancia_documentos = ConstanciaDocumento.formar_cadena(params[:constancia_documento_ids])
+  if @constancia_documentos.blank?
+    flash[:alert] = "No se seleccionó ninguna constancia para firmar."
+    redirect_to constancia_documentos_path and return
   end
+end
 
   def validar
     @constancia_documentos = ConstanciaDocumento.validar_constancias(params[:constancia_documento_ids])
     redirect_to validar_constancias_constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido validada(s) correctamente.'
   end
 
-  def actualizar_firma
-    ConstanciaDocumento.actualizar_firma(params[:firmaElectronica])
-    redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
-  end
+ def actualizar_firma
+  ConstanciaDocumento.actualizar_firma(params[:firmaElectronica], params[:constancia_documento_ids])
+  redirect_to constancia_documentos_path, notice: 'La(s) constancia(s) ha(n) sido firmada(s) correctamente.'
+end
 
   def imprimir
     @constancia_documento = ConstanciaDocumento.find_by uuid: params[:uuid]
@@ -1170,11 +1279,10 @@ class ConstanciaDocumentosController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "RELACION_" + @relacion + "_" + @unidad_academica + "_"+ @anio,
-        footer: { right: 'Página [page] de [topage]', font_size: 10, },
-        template: "constancia_documentos/imprimir_relacion.html.erb",
-        layout: "imprimir_relacion.html.erb",
-        orientation: "Landscape"
+        render pdf: "RELACION_#{@relacion}_#{@unidad_academica}_#{@anio}",
+       footer: { right: 'Página [page] de [topage]', font_size: 10 },
+       template: "constancia_documentos/imprimir_relacion.html.erb",
+       format: "html"
       end
     end
   end
@@ -1200,6 +1308,56 @@ class ConstanciaDocumentosController < ApplicationController
   def obtener_relacion
     @constancia_documentos = ConstanciaDocumento.generar_lista(params[:relacion], params[:escuela], params[:anio])
   end
+
+   # Se agrega controlador para carga de archivo
+  def cargar_archivo
+  end
+
+  # Controlador para importar archivo CSV
+  def importar_csv
+  if params[:file].present?
+    resultado = ConstanciaDocumento.importar_csv(params[:file].tempfile.path)
+    redirect_to constancia_documentos_path, notice: "Se importaron #{resultado[:exitosos]} registros correctamente. #{resultado[:errores]} registros fallaron."
+  else
+    redirect_to cargar_archivo_constancia_documentos_path, alert: "Debe seleccionar un archivo CSV."
+  end
+end
+
+#Se agrega Controlador para exportar archivo CSV de acuerdo con el filtro seleccionado
+#Solo exporta no de oficio, fecha, nombre, boleta, unidad academica, carrera, periodo y prestatario
+def exportar_csv
+  # Tomamos los registros filtrados actualmente con Filterrific
+  @filterrific = initialize_filterrific(
+    ConstanciaDocumento.all,   # o tu scope principal
+    params[:filterrific],
+    select_options: {
+      unidad_academica: ConstanciaDocumento.options_for_unidad_academica,
+      numero_relacion: ConstanciaDocumento.options_for_numero_relacion,
+      carrera: ConstanciaDocumento.options_for_carrera
+    },
+    sanitize_params: true
+  ) or return
+
+  registros = @filterrific.find
+
+  csv_data = CSV.generate(headers: true) do |csv|
+    csv << ['No. Oficio', 'Fecha de captura', 'Nombre completo', 'Boleta', 'Unidad academica', 'Programa academico', 'Periodo', 'Prestatario']
+
+    registros.each do |r|
+      csv << [
+        r.numero_oficio,
+        r.fecha,
+        r.nombre_completo,
+        r.boleta,
+        r.unidad_academica,
+        r.programa_academico,
+        r.periodo,
+        r.prestatario
+      ]
+    end
+  end
+  send_data csv_data, filename: "constancias_#{Date.today}.csv", type: 'text/csv', disposition: 'attachment'
+end
 
   def constancias_firmadas
     @filterrific = initialize_filterrific(
@@ -1234,9 +1392,15 @@ class ConstanciaDocumentosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_constancia_documento
-      #@constancia_documento = ConstanciaDocumento.find(params[:id])
-      @constancia_documento = ConstanciaDocumento.find_by uuid: params[:uuid]
-    end
+  @constancia_documento = ConstanciaDocumento.find_by(uuid: params[:uuid])
+  unless @constancia_documento
+    flash[:alert] = "No se encontró la constancia solicitada."
+    redirect_to constancia_documentos_path
+  end
+   def filterrific_params
+  params.fetch(:filterrific, {}).permit(:search_query, :unidad_academica, :numero_relacion, :carrera)
+  end
+end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def constancia_documento_params
@@ -1254,4 +1418,7 @@ class ConstanciaDocumentosController < ApplicationController
     def firmar_constancia_params
      params.require(:constancia_documento).permit(:firma_direccion)
    end
+
 end
+
+

@@ -11,16 +11,6 @@
     </div>
   <% end %>
     <div class="form-row">
-        <div class="form-group col-md-4">
-         <strong>Boleta:</strong><br><input type="text" id="fboleta" name="fboleta" class="form-control col-md-6"><br>
-         <button type="button" id="getBoleta" name="getBoleta" class="btn btn-success">Buscar boleta</button>
-        </div>
-        <div class="form-group col-md-4">
-         <strong>CURP:</strong><br><input type="text" id="fcurp" name="fcurp" class="form-control col-md-6"><br>
-         <button type="button" id="getCurp" name="getCurp" class="btn btn-success">Buscar CURP</button>
-        </div>
-    </div>
-    <div class="form-row">
       <div class="form-group col-md-4">
         <strong><%= form.label :boleta %></strong>
         <%= form.text_field :boleta, class:"form-control col-md-8", autofocus: true %>

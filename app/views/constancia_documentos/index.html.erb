@@ -1,69 +1,118 @@
-<% if user_signed_in? && current_user.role.nombre == 'Dirección' or user_signed_in? && current_user.role.nombre == 'Administrador' or user_signed_in? && current_user.role.nombre == 'Departamento' or user_signed_in? && current_user.role.nombre == 'Captura'%>
-<div class="row" style="float:right">
-  <p><strong>Constancias capturadas:</strong> <%= ConstanciaDocumento.all.count %><br>
-     <strong>Constancias firmadas:</strong> <%= ConstanciaDocumento.where.not(firma_direccion:nil).count %><br>
-     <strong>Constancias por validar:</strong> <%= ConstanciaDocumento.where(constancia_emitida:false,firma_direccion:nil).count %><br>
-     <strong>Constancias por firmar:</strong> <%= ConstanciaDocumento.where(firma_direccion:nil).count %>
-  </p>
-</div>
+<% if user_signed_in? && 
+      (current_user.role.nombre == 'Dirección' || 
+       current_user.role.nombre == 'Administrador' || 
+       current_user.role.nombre == 'Departamento' || 
+       current_user.role.nombre == 'Captura') %>
+  <div class="row" style="float:right">
+    <p>
+      <strong>Constancias capturadas:</strong> <%= ConstanciaDocumento.all.count %><br>
+      <strong>Constancias firmadas:</strong> <%= ConstanciaDocumento.where.not(firma_direccion: nil).count %><br>
+      <strong>Constancias por validar:</strong> <%= ConstanciaDocumento.where(constancia_emitida: false, firma_direccion: nil).count %><br>
+      <strong>Constancias por firmar:</strong> <%= ConstanciaDocumento.where(firma_direccion: nil).count %>
+    </p>
+  </div>
 <% end %>
+
 <h1>Buscar constancias</h1>
 
-<%= form_for_filterrific @filterrific do |f| %>
+<%= form_for_filterrific @filterrific, html: { id: 'filterrific_form' } do |f| %>
   <div class="row">
     <div class="col-md-12" align="right">
-      <br><br><br>
-      <% if policy(@constancia_documentos).new? %>
-      <%= link_to 'Crear nueva constancia', new_constancia_documento_path, class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-  </div>
+  <br><br><br>
+  <% if policy(@constancia_documentos).new? %>
+  <%= link_to 'Crear nueva constancia', new_constancia_documento_path, class: 'btn btn-primary' %> 
+<% end %>
+
+<% if user_signed_in? && current_user.role.nombre == 'Administrador' %>
+  <%= link_to 'Cargar Archivo', cargar_archivo_constancia_documentos_path, class: 'btn btn-success', style: 'margin-left: 10px;' %>
+<% end %>
+</div>
+  
   <br>
-  <div class="row">
+
+   <div class="row">
     <div class="col-md-4">
-      <%= f.label :search_query, 'Boleta' %>
+      <%= f.label :search_query, 'Boleta o Apellidos' %>
       <%= f.text_field(
         :search_query,
         class: 'filterrific-periodically-observed form-control col-md-7'
       ) %>
     </div>
-    <% if user_signed_in? && current_user.role.nombre == 'Dirección' or user_signed_in? && current_user.role.nombre == 'Administrador' or user_signed_in? && current_user.role.nombre == 'Departamento' or user_signed_in? && current_user.role.nombre == 'Captura'%>
-    <div class="col-md-4">
-      <%= f.label :search_query, 'Escuela' %>
-      <%= f.select(
-        :unidad_academica,
-        @filterrific.select_options[:unidad_academica],
-        { include_blank: '- Todas -' },
-        class: 'form-control col-md-8'
-      ) %>
-    </div>
+  
+    <% if user_signed_in? && 
+          (current_user.role.nombre == 'Dirección' || 
+           current_user.role.nombre == 'Administrador' || 
+           current_user.role.nombre == 'Departamento' || 
+           current_user.role.nombre == 'Captura') %>
+      <div class="col-md-4">
+        <%= f.label :unidad_academica, 'Escuela' %>
+        <%= f.select :unidad_academica, @filterrific.select_options[:unidad_academica],
+                     { include_blank: '- Todas -' }, class: 'form-control col-md-8' %>
+      </div>
     <% end %>
+
     <div class="col-md-4">
-      <%= f.label :search_query, 'Número de relación' %>
-      <%= f.select(
-        :numero_relacion,
-        @filterrific.select_options[:numero_relacion],
-        { include_blank: '- Todas -' },
-        class: 'form-control col-md-4'
-      ) %>
+      <%= f.label :numero_relacion, 'Número de relación' %>
+      <%= f.select :numero_relacion, @filterrific.select_options[:numero_relacion],
+                   { include_blank: '- Todas -' }, class: 'form-control col-md-4' %>
     </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-12">
-      <%= link_to(
-        'Quitar filtros',
-        reset_filterrific_url,
-        class: 'btn btn-primary'
-      ) %>
+
+    <div class="col-md-4">
+      <%= f.label :carrera, 'Carrera' %>
+      <%= f.select :carrera, ConstanciaDocumento.options_for_carrera,
+                   { include_blank: '- Todas -' }, class: 'form-control col-md-8' %>
     </div>
   </div>
 
-
   <br>
+
+ <div class="row mt-3">
+  <div class="col-md-12">
+    <%= link_to 'Quitar filtros', reset_filterrific_url, class: 'btn btn-primary' %>
+    <% if user_signed_in? && current_user.role.nombre == 'Administrador' %>
+  <%= button_tag 'Exportar CSV', id: 'exportar_csv', type: 'button', class: 'btn btn-info', style: 'margin-left: 10px;' %>
+<% end %>
+  </div>
+</div>
 <% end %>
 
-<%= render(
-  partial: 'constancia_documentos/lista',
-  locals: { constancia_documentos: @constancia_documentos }
-) %>
+<script>
+document.addEventListener("turbolinks:load", function() {
+  var form = document.querySelector('#filterrific_form');
+  if (form) {
+    form.querySelectorAll('select').forEach(function(select) {
+      select.addEventListener('change', function() {
+        form.submit();
+      });
+    });
+  }
+
+  var exportBtn = document.getElementById("exportar_csv");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", function() {
+      const nombre = prompt("Nombre del archivo:", "constancias.csv");
+      if (!nombre) return;
+      fetch("<%= exportar_csv_constancia_documentos_path(filterrific: @filterrific_params) %>")
+        .then(r => r.blob())
+        .then(b => {
+          const a = Object.assign(document.createElement("a"), {
+            href: URL.createObjectURL(b),
+            download: nombre.endsWith(".csv") ? nombre : nombre + ".csv"
+          });
+          a.click();
+        });
+    });
+  }
+});
+</script>
+
+
+<div id="filterrific_results">
+  <%= render partial: 'constancia_documentos/lista', 
+             locals: { constancia_documentos: @constancia_documentos } %>
+</div>
+
+
+
+
+

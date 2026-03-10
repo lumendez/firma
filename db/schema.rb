@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_064635) do
+ActiveRecord::Schema.define(version: 2025_08_20_235105) do
 
   create_table "constancia_documentos", force: :cascade do |t|
     t.string "folio"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2020_06_11_064635) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "codigo"
+    t.string "efirma_password"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"

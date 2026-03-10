@@ -147,5 +147,29 @@
       </span>
     </footer>
     <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const exportarBtn = document.getElementById("exportar_csv");
+
+        if (exportarBtn) {
+          exportarBtn.addEventListener("click", function() {
+            <% filter_query = @filterrific_params.present? ? @filterrific_params.to_query : "" %>
+              fetch("/constancia_documentos/exportar_csv?<%= filter_query %>", {
+              headers: {
+                "Accept": "text/csv"
+              }
+            })
+            .then(response => response.blob())
+            .then(blob => {
+              const fecha = new Date().toISOString().slice(0,10); // yyyy-mm-dd
+              saveAs(blob, `constancias_${fecha}.csv`);
+            })
+            .catch(error => console.error("Error al exportar CSV:", error));
+          });
+        }
+      });
+    </script>
   </body>
 </html>

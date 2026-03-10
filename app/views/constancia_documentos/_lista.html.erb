@@ -1,6 +1,6 @@
 <div id="filterrific_results">
 <h1 class="sub">Constancias capturadas</h1>
-<%= form_tag firmar_constancia_documentos_path, method: :get do %>
+<%= form_tag firmar_constancia_documentos_path, method: :post do %>
   <table class="table tabla-constancias">
     <thead>
       <tr>
@@ -32,7 +32,7 @@
       <% @constancia_documentos.each do |constancia_documento| %>
         <tr>
           <% if policy(@constancia_documentos).firmar? %>
-            <td><%= check_box_tag "constancia_documento_ids[]", constancia_documento.id %></td>
+            <td><%= check_box_tag "constancia_documento_ids[]", constancia_documento.uuid %></td>
           <% end %>
           <td><%= constancia_documento.numero_oficio %></td>
           <td><%= constancia_documento.fecha %></td>

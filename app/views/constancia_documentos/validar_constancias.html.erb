@@ -1,6 +1,6 @@
-<h1>Buscar constancias</h1>
+<h1>Validar constancias</h1>
 
-<%= form_for_filterrific @filterrific do |f| %>
+<%= form_for_filterrific @filterrific, html: { id: 'filterrific_form' } do |f| %>
   <div class="row">
     <div class="col-md-12" align="right">
       <br><br><br>
@@ -12,7 +12,7 @@
   <br>
   <div class="row">
     <div class="col-md-4">
-      <%= f.label :search_query, 'Boleta' %>
+      <%= f.label :search_query, 'Boleta o Apellidos' %>
       <%= f.text_field(
         :search_query,
         class: 'filterrific-periodically-observed form-control col-md-7'
@@ -36,6 +36,15 @@
         class: 'form-control col-md-4'
       ) %>
     </div>
+    <div class="col-md-4">
+  <%= f.label :carrera, 'Carrera' %>
+  <%= f.select(
+    :carrera,
+    ConstanciaDocumento.options_for_carrera,
+    { include_blank: '- Todas -' },
+    class: 'form-control col-md-4'
+  ) %>
+</div>
   </div>
   <br>
   <div class="row">
@@ -51,6 +60,12 @@
 
   <br>
 <% end %>
+
+<script>
+  $(document).on('change', '#filterrific_form select', function() {
+    $(this).closest('form').submit();
+  });
+</script>
 
 <%= render(
   partial: 'constancia_documentos/validar_lista',
