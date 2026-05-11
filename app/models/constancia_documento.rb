@@ -471,6 +471,7 @@ class ConstanciaDocumento < ApplicationRecord
     # Escuelas Nacionales
     "ENCB"         => "ESCUELA NACIONAL DE CIENCIAS BIOLOGICAS",
     "ENMH"         => "ESCUELA NACIONAL DE MEDICINA Y HOMEOPATIA",
+    "ENBA"         => "ESCUELA NACIONAL DE BIBLIOTECONOMIA Y ARCHIVONOMIA",
     # CECyT (Centros de Estudios Científicos y Tecnológicos)
     "CECyT1"       => 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 1 "GONZALO VAZQUEZ VELA"',
     "CECyT2"       => 'CENTRO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS No. 2 "MIGUEL BERNARD PERALES"',
